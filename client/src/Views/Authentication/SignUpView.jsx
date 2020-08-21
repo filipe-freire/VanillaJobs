@@ -22,10 +22,11 @@ class AuthSignUpView extends Component {
     event.preventDefault();
     const { companyName, email, password } = this.state;
     const body = { companyName, email, password };
-    signUp(body)
+    signUp(body) // call sign up method from services
       .then(data => {
+        // receives json file from backend
         const { user } = data;
-        this.props.onUserUpdate(user);
+        this.props.onUserUpdate(user); // update user state in app.jsx
       })
       .catch(error => {
         console.log(error);

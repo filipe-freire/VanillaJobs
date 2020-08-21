@@ -27,16 +27,10 @@ class App extends Component {
         <h1>Vanilla Jobs</h1>
         <BrowserRouter>
           <Switch>
-            <Route component={Homeview} />
-
+            {/* <Route component={Homeview} /> */}
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <AuthSignUpView
-                  {...props}
-                  onUserUpdate={this.handleUserUpdate}
-                />
-              )}
+              render={props => <AuthSignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/"
             />

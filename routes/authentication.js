@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const bcrypt = require('bcryptjs');
 
@@ -11,16 +10,21 @@ const authenticationRouter = new express.Router();
 
 // });
 
-module.exports = authenticationRouter;
-=======
-'use strict';
-
-const { Router } = require('express');
-const router = new Router();
-
-router.get('/', (req, res, next) => {
-  res.json({ type: 'success', data: { title: 'Authentication' } });
+authenticationRouter.post('/sign-up', async (request, response, next) => {
+  const { companyName, email, password } = request.body;
+  try {
+    if (password.length < 8) throw new Error('Password is too short.');
+    const hashAndSalt = await bcrypt.hash(password, 10);
+    const user = await User.create({
+      name: companyName, // check "name" in user model
+      email,
+      passwordHashAndSalt: hashAndSalt
+    });
+    request.session.userId = user._id;
+    response.json({ user: { _id: user._id, name: user.name, email: user.email } }); // research what this means/does
+  } catch (error) {
+    next(error);
+  }
 });
 
-module.exports = router;
->>>>>>> 43f7f976e396aee25ab3ccdb31c5a2f1c47f9e13
+module.exports = authenticationRouter;
