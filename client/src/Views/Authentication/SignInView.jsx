@@ -15,8 +15,11 @@ class SignInView extends Component {
 
   handleFormSubmission = e => {
     e.preventDefault();
-
-    signIn();
+    const { email, password } = this.state;
+    const body = { email, password };
+    signIn(body).then(data => {
+      console.log(data);
+    });
     //creating service for sign-in form submission
   };
 
