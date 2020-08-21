@@ -31,7 +31,7 @@
 ```json
 Post {
     "creator": {
-      "type": mongoose.Schema.Types.ObjectId,
+      "type": "mongoose.Schema.Types.ObjectId",
       "required": true,
       "ref": "User"
     },
