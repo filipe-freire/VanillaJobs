@@ -5,11 +5,11 @@ const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
 const serveFavicon = require('serve-favicon');
-const indexRouter = require('./routes/index');
 
 // Insert Necessary Packages
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
 const mongoStore = connectMongo(expressSession);
@@ -19,8 +19,10 @@ const app = express();
 
 const deserializeUser = require('./middleware/deserialize-user');
 
-const postRouter = require('./routes/post');
+const applicationRouter = require('./routes/application');
 const authenticationRouter = require('./routes/authentication');
+const companyRouter = require('./routes/company');
+const jobPostRouter = require('./routes/jobPost');
 
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
@@ -50,16 +52,16 @@ app.use(
 );
 app.use(deserializeUser);
 
-app.use('/', indexRouter);
-
 // Route Handlers
 
 // CHANGE ROUTES TO OUR OWN
-app.use('/job-post', postRouter);
+app.use('/job-post', jobPostRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/application', applicationRouter);
+app.use('/company', companyRouter);
 
 // Catch missing routes and forward to error handler
-app.use((req, res, next) => {
+app.use('*', (req, res, next) => {
   next(createError(404));
 });
 
