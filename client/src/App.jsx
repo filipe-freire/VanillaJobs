@@ -7,6 +7,7 @@ import SignInView from './Views/Authentication/SignInView';
 import ErrorView from './Views/ErrorView';
 import { signOut } from './services/authentication';
 import Homepage from './Views/Homepage/Homepage';
+import FormView from './Views/Application/FormView';
 
 import './App.css';
 
@@ -55,7 +56,6 @@ class App extends Component {
         <h1>Vanilla Jobs</h1>
         <BrowserRouter>
           <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
-
           <Switch>
             <Route path="/" component={Homepage} exact />
             <ProtectedRoute
@@ -71,6 +71,8 @@ class App extends Component {
               authorized={!this.state.user}
               redirect="/"
             />
+
+            <Route path="/jobpost/:id/application" component={FormView} />
             <Route path="/error" component={ErrorView} />
             <Redirect from="/" to="/error" />
           </Switch>

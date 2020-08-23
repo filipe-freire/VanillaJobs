@@ -12,6 +12,10 @@ const schema = new mongoose.Schema({
     required: true,
     lowercase: true,
     trim: true
+  },
+  passwordHashAndSalt: {
+    type: String,
+    required: true
   }
 });
 

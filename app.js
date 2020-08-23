@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 
 const deserializeUser = require('./middleware/deserialize-user');
 
-const jobApplicationRouter = require('./routes/application');
+const jobApplicationRouter = require('./routes/job-application');
 const authenticationRouter = require('./routes/authentication');
 const companyRouter = require('./routes/company');
 const jobPostRouter = require('./routes/jobPost');
@@ -59,10 +59,10 @@ app.use(deserializeUser);
 
 // Route Handlers
 
-// CHANGE ROUTES TO OUR OWN
+// OUR ROUTERS
 app.use('/job-post', jobPostRouter);
 app.use('/authentication', authenticationRouter);
-app.use('/application', jobApplicationRouter);
+app.use('/job-application', jobApplicationRouter);
 app.use('/company', companyRouter);
 
 // Catch missing routes and forward to error handler
