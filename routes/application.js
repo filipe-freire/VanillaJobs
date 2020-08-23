@@ -1,10 +1,10 @@
 'use strict';
 
 const { Router } = require('express');
-const router = new Router();
+const applicationRouter = new Router();
 
-router.get('/', (req, res, next) => {
+applicationRouter.get('/', (req, res, next) => {
   res.json({ type: 'success', data: { title: 'Application' } });
 });
 
-module.exports = router;
+module.exports = applicationRouter;

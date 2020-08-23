@@ -1,10 +1,10 @@
 'use strict';
 
 const { Router } = require('express');
-const router = new Router();
+const jobPostRouter = new Router();
 
-router.get('/', (req, res, next) => {
+jobPostRouter.get('/', (req, res) => {
   res.json({ type: 'success', data: { title: 'jobPost' } });
 });
 
-module.exports = router;
+module.exports = jobPostRouter;

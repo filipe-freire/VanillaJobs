@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
-import SignInView from './../Authentication/SignInView';
-
 class Homepage extends Component {
   render() {
     return (
       <div>
-        <SignInView />
+        <h1>Vanilla Jobs - Homepage</h1>
       </div>
     );
   }

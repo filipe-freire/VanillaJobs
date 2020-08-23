@@ -1,10 +1,10 @@
 'use strict';
 
 const { Router } = require('express');
-const router = new Router();
+const companyRouter = new Router();
 
-router.get('/', (req, res, next) => {
+companyRouter.get('/', (req, res) => {
   res.json({ type: 'success', data: { title: 'Company' } });
 });
 
-module.exports = router;
+module.exports = companyRouter;

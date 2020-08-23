@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
 import SignUpView from './Views/Authentication/SignUpView';
 import SignInView from './Views/Authentication/SignInView';
+import ErrorView from './Views/ErrorView';
+import { signOut } from './services/authentication';
+import Homepage from './Views/Homepage/Homepage';
 
 import './App.css';
-
-import Homepage from './Views/Homepage/Homepage';
 
 class App extends Component {
   constructor() {
@@ -17,10 +19,34 @@ class App extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   loadMe()
+  //     .then(data => {
+  //       const user = data.user;
+  //       this.handleUserUpdate(user);
+  //       this.setState({
+  //         loaded: true
+  //       });
+  //     })
+  //     .then(error => {
+  //       console.log(error);
+  //     });
+  // }
+
   handleUserUpdate = user => {
     this.setState({
       user
     });
+  };
+
+  handleSignOut = () => {
+    signOut()
+      .then(() => {
+        this.handleUserUpdate(null);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -28,31 +54,25 @@ class App extends Component {
       <div className="App">
         <h1>Vanilla Jobs</h1>
         <BrowserRouter>
-          <Switch>
-<<<<<<< HEAD
-            <Route component={Homepage} />
+          <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
 
+          <Switch>
+            <Route path="/" component={Homepage} exact />
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
-=======
-            {/* <Route component={Homeview} /> */}
-            <ProtectedRoute
-              path="/authentication/sign-up"
-              render={props => <AuthSignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
->>>>>>> a53aa4a04be8cfd3cbe48cbd02735aedda7a6867
+              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/"
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => (
-                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
+              authorized={!this.state.user}
+              redirect="/"
             />
+            <Route path="/error" component={ErrorView} />
+            <Redirect from="/" to="/error" />
           </Switch>
         </BrowserRouter>
       </div>
