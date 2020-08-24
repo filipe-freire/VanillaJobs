@@ -18,7 +18,8 @@ class Creation extends Component {
       tasks: [],
       requirements: [],
       seniority: '',
-      tech: []
+      tech: [],
+      category: ''
     };
   }
 
@@ -32,7 +33,8 @@ class Creation extends Component {
       tasks,
       requirements,
       seniority,
-      tech
+      tech,
+      category
     } = this.state;
 
     const body = {
@@ -43,7 +45,8 @@ class Creation extends Component {
       tasks,
       requirements,
       seniority,
-      tech
+      tech,
+      category
     };
     postJob(body).then(data => console.log(data));
   };
@@ -65,6 +68,15 @@ class Creation extends Component {
           placeholder="Job Title"
           name="title"
           value={this.state.title}
+          onChange={this.handleUserInput}
+        />
+        <label htmlFor="category">Category</label>
+        <input
+          type="text"
+          id="category"
+          placeholder="Category"
+          name="category"
+          value={this.state.category}
           onChange={this.handleUserInput}
         />
         <label htmlFor="location">Job Location</label>

@@ -41,6 +41,10 @@ const schema = new mongoose.Schema({
   tech: {
     type: [],
     required: true
+  },
+  category: {
+    type: String,
+    required: true
   }
 });
 

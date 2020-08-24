@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { editJob } from './../../services/jobPosts';
+
 class EditView extends Component {
   constructor() {
     super();
@@ -21,6 +23,60 @@ class EditView extends Component {
 
     this.setState({
       [name]: value
+    });
+  };
+
+  handleFormSubmission = e => {
+    e.preventDefault();
+    const id = this.props.match.params.id;
+
+    const {
+      creator,
+      title,
+      location,
+      description,
+      tasks,
+      requirements,
+      seniority,
+      tech,
+      category
+    } = this.state;
+
+    const body = {
+      creator,
+      title,
+      location,
+      description,
+      tasks,
+      requirements,
+      seniority,
+      tech,
+      category
+    };
+    editJob(id, body).then(data => {
+      const {
+        creator,
+        title,
+        location,
+        description,
+        tasks,
+        requirements,
+        seniority,
+        tech,
+        category
+      } = data.post;
+
+      this.setState({
+        creator,
+        title,
+        location,
+        description,
+        tasks,
+        requirements,
+        seniority,
+        tech,
+        category
+      });
     });
   };
 

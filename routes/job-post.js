@@ -16,7 +16,8 @@ jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
     tasks,
     requirements,
     seniority,
-    tech
+    tech,
+    category
   } = req.body;
 
   JobPost.create({
@@ -27,7 +28,8 @@ jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
     tasks,
     requirements,
     seniority,
-    tech
+    tech,
+    category
   })
     .then(post => {
       console.log('this is the job post to be sent in json', post);

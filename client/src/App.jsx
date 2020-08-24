@@ -12,6 +12,7 @@ import CreateView from './Views/JobPosts/CreateView';
 import EditView from './Views/JobPosts/EditView';
 import Profile from './Views/Company/Profile';
 import ProfileEditView from './Views/Company/ProfileEditView';
+import SingleView from './Views/JobPosts/SingleView';
 
 import './App.css';
 
@@ -86,6 +87,7 @@ class App extends Component {
 
             <Route path="/jobpost/create" component={CreateView} />
             <Route path="/jobpost/:id/edit" component={EditView} />
+            <Route path="/jobpost/:id" component={SingleView} exact />
 
             <Route path="/jobpost/:id/application" component={FormView} />
             <Route path="/error" component={ErrorView} />
