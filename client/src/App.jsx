@@ -59,6 +59,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.user);
     return (
       <div className="App">
         <h1>Vanilla Jobs</h1>
@@ -73,13 +74,17 @@ class App extends Component {
 
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
