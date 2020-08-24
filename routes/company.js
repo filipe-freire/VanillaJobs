@@ -19,7 +19,13 @@ companyRouter.get('/user/:id', async (req, res, next) => {
         user: {
           _id: id,
           companyName: user.companyName,
-          email: user.email
+          email: user.email,
+          logo: user.logo,
+          location: user.location,
+          foundedDate: user.foundedDate,
+          websiteUrl: user.websiteUrl,
+          sizeInEmployees: user.sizeInEmployees,
+          summary: user.summary
         }
       });
     } else {
