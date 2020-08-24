@@ -25,7 +25,6 @@ authenticationRouter.post('/sign-up', async (request, response, next) => {
 
 authenticationRouter.post('/sign-in', async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.body);
   try {
     const user = await User.findOne({ email });
     if (!user) throw new Error("Either your email or your pasword don't match");
@@ -38,7 +37,6 @@ authenticationRouter.post('/sign-in', async (req, res, next) => {
     if (!comaparePassword)
       throw new Error('There was an error either with your email our password');
     req.session.userId = user._id;
-    console.log(user);
     res.json({
       user: { _id: user._id, companyName: user.companyName, email: user.email }
     });

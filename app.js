@@ -61,7 +61,7 @@ app.use(deserializeUser);
 app.use('/job-post', jobPostRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/job-application', jobApplicationRouter);
-app.use('/company', companyRouter);
+app.use('/user', companyRouter);
 
 // Catch missing routes and forward to error handler
 app.use('*', (req, res, next) => {

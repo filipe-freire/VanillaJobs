@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { loadMe } from '../../services/authentication';
-import { editUser } from '../../services/company';
+
+import { loadUser, editUser } from '../../services/company';
 
 class ProfileEditView extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class ProfileEditView extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    loadMe(id)
+    loadUser(id)
       .then(data => {
         const user = data.user;
         this.setState({
@@ -29,6 +29,7 @@ class ProfileEditView extends Component {
 
   handleUserEdit = event => {
     event.preventDefault();
+
     const id = this.props.match.params.id;
 
     const user = this.state.user;

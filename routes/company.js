@@ -10,10 +10,12 @@ companyRouter.get('/me', (req, res) => {
   res.json({ user });
 });
 
-companyRouter.get('/user/:id', async (req, res, next) => {
-  const id = req.params.id;
+companyRouter.get('/:id', async (req, res, next) => {
+  const id = req.user._id;
+
   try {
     const user = await User.findById(id);
+    console.log('this is the user', user);
     if (user) {
       res.json({
         user: {
@@ -36,10 +38,33 @@ companyRouter.get('/user/:id', async (req, res, next) => {
   }
 });
 
-companyRouter.patch('/user/:id', (req, res, next) => {
-  const id = req.params.id;
+companyRouter.patch('/:id', (req, res, next) => {
+  const id = req.user._id;
+  const {
+    companyName,
+    email,
+    logo,
+    location,
+    foundedDate,
+    websiteUrl,
+    sizeInEmployees,
+    summary
+  } = req.body;
 
-  User.findOneAndUpdate({ _id: id }, { companyName: req.body.companyName }, { new: true })
+  User.findOneAndUpdate(
+    { _id: id },
+    {
+      companyName,
+      email,
+      logo,
+      location,
+      foundedDate,
+      websiteUrl,
+      sizeInEmployees,
+      summary
+    },
+    { new: true }
+  )
     .then(post => {
       res.json({ post });
     })

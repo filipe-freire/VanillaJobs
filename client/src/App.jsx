@@ -32,6 +32,7 @@ class App extends Component {
         const user = data.user;
         console.log(user);
         this.handleUserUpdate(user);
+        console.log('here is the user', user);
         this.setState({
           loaded: true
         });
@@ -67,25 +68,30 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Homepage} exact />
 
+            <Route path="/profile/:id/edit" component={ProfileEditView} exact />
             {this.state.user && (
               <Route
-                path={`/profile/${this.state.user._id}`}
-                render={props => <Profile {...props} user={this.state.user} />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
+                path={'/profile/:id'}
+                render={props => (
+                  <Profile {...props} user={this.state.user} exact />
+                )} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
               />
             )}
 
-            <Route path="/profile/:id/edit" component={ProfileEditView} exact />
-
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
