@@ -70,10 +70,8 @@ class App extends Component {
 
             {this.state.user && (
               <Route
-                user={this.state.user}
                 path={`/profile/${this.state.user._id}`}
-                render={props => <Profile {...props} user={this.state.user} />}
-                exact
+                render={props => <Profile {...props} user={this.state.user} />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
               />
             )}
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Profile = props => {
-  console.log('these are the props', props);
+  //console.log(props.user);
   return (
     <div>
       {(props.user && (
