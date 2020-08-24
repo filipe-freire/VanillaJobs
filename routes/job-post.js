@@ -40,6 +40,21 @@ jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
     });
 });
 
+jobPostRouter.get('/:id', async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    const post = await JobPost.findById(id).populate('creator');
+    if (post) {
+      res.json({ post });
+    } else {
+      next();
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 jobPostRouter.patch('/:id', authenticationGuard, (req, res, next) => {
   const id = req.params.id;
 
