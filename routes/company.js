@@ -5,9 +5,9 @@ const companyRouter = new Router();
 
 const User = require('../models/user');
 
-companyRouter.get('/me', (request, response) => {
-  const user = request.user;
-  response.json({ user });
+companyRouter.get('/me', (req, res) => {
+  const user = req.user;
+  res.json({ user });
 });
 
 companyRouter.get('/user/:id', async (req, res, next) => {
