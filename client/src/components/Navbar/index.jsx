@@ -9,7 +9,7 @@ const Navbar = props => {
       <Link to="/jobpost/create">Create a Job Post</Link>
       {(props.user && (
         <>
-          <span>{props.user.companyName}</span>
+          <Link to={`/profile/${props.user._id}`}> {`${props.user.companyName}'s Profile`} </Link>
           <button onClick={props.onSignOut}>Sign Out</button>
         </>
       )) || (

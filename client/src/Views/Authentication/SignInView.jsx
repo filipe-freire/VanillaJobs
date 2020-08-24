@@ -58,7 +58,7 @@ class SignInView extends Component {
             value={this.state.password}
             onChange={this.handleInputChange}
           />
-          <button>Sumbit</button>
+          <button>Submit</button>
         </form>
       </div>
     );

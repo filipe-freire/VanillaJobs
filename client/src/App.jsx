@@ -6,6 +6,7 @@ import SignUpView from './Views/Authentication/SignUpView';
 import SignInView from './Views/Authentication/SignInView';
 import ErrorView from './Views/ErrorView';
 import { signOut } from './services/authentication';
+import { loadUser } from './services/company';
 import Homepage from './Views/Homepage/Homepage';
 import FormView from './Views/Application/FormView';
 import CreateView from './Views/JobPosts/CreateView';
@@ -25,21 +26,23 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   loadMe()
-  //     .then(data => {
-  //       const user = data.user;
-  //       this.handleUserUpdate(user);
-  //       this.setState({
-  //         loaded: true
-  //       });
-  //     })
-  //     .then(error => {
-  //       console.log(error);
-  //     });
-  // }
+  componentDidMount() {
+    loadUser()
+      .then(data => {
+        const user = data.user;
+
+        this.handleUserUpdate(user);
+        this.setState({
+          loaded: true
+        });
+      })
+      .then(error => {
+        console.log(error);
+      });
+  }
 
   handleUserUpdate = user => {
+    console.log('handleUserUpdate ran: ', user);
     this.setState({
       user
     });
@@ -70,17 +73,13 @@ class App extends Component {
 
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => (
-                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />

@@ -5,7 +5,7 @@ const api = axios.create({
   withCredentials: true
 });
 
-export const loadUser = id => api.get(`/user/${id}`).then(response => response.data);
+export const loadUser = () => api.get(`/me`).then(response => response.data);
 
 // FIX IT!
 export const editUser = (id, body) =>

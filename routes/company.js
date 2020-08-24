@@ -5,6 +5,11 @@ const companyRouter = new Router();
 
 const User = require('../models/user');
 
+companyRouter.get('/me', (request, response) => {
+  const user = request.user;
+  response.json({ user });
+});
+
 companyRouter.get('/user/:id', async (req, res, next) => {
   const id = req.params.id;
   try {
@@ -12,10 +17,9 @@ companyRouter.get('/user/:id', async (req, res, next) => {
     if (user) {
       res.json({
         user: {
-          _id: user._id,
+          _id: id,
           companyName: user.companyName,
-          email: user.email,
-          location: user.location
+          email: user.email
         }
       });
     } else {
