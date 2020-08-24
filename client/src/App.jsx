@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   handleUserUpdate = user => {
-    console.log('handleUserUpdate ran: ', user);
+    //console.log('handleUserUpdate ran: ', user);
     this.setState({
       user
     });
@@ -68,7 +68,14 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Homepage} exact />
 
-            <Route path="/profile/:id" component={Profile} exact />
+            {this.state.user && (
+              <Route
+                user={this.state.user}
+                path={`/profile/${this.state.user._id}`}
+                component={Profile}
+                exact
+              />
+            )}
 
             <Route path="/profile/:id/edit" component={ProfileEditView} exact />
 
@@ -80,6 +87,7 @@ class App extends Component {
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
+
             <ProtectedRoute
               path="/authentication/sign-in"
               render={props => (
