@@ -23,7 +23,7 @@ class FormView extends Component {
 
   handleFormSubmission = event => {
     event.preventDefault();
-
+    const jobId = this.props.match.params.id;
     const {
       candidateName,
       candidateEmail,
@@ -38,13 +38,14 @@ class FormView extends Component {
       candidateLocation,
       motivation,
       linkedinUrl,
-      githubUrl
+      githubUrl,
+      jobId
     };
     submitApplication(body) // call sign up method from services
       .then(data => {
         // receives json file from backend
         console.log(data);
-        this.props.history.push(`/`); // REDIRECT TO A "APPLICATION SUBMITTED SUCCESSFULLY PAGE"
+        this.props.history.push(`/application/success`); // REDIRECT TO A "APPLICATION SUBMITTED SUCCESSFULLY PAGE"
       })
       .catch(error => {
         console.log(error);
@@ -120,7 +121,7 @@ class FormView extends Component {
             onChange={this.handleInputChange}
           />
 
-          <button>Sign Up</button>
+          <button>Submit</button>
         </form>
       </div>
     );

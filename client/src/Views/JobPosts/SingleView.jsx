@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import { loadJob, deleteJob } from './../../services/jobPosts';
 
 class SingleView extends Component {
@@ -49,6 +49,7 @@ class SingleView extends Component {
             <form onSubmit={this.handlePostDeletion}>
               <button>Delete</button>
             </form>
+            <Link to={`/jobpost/${this.props.match.params.id}/application`}>Apply to Job</Link>
           </>
         )}
       </div>

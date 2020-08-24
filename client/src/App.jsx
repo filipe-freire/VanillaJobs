@@ -14,6 +14,7 @@ import EditView from './Views/JobPosts/EditView';
 import Profile from './Views/Company/Profile';
 import ProfileEditView from './Views/Company/ProfileEditView';
 import SingleView from './Views/JobPosts/SingleView';
+import FormSubmittedView from './Views/Application/FormSubmittedView';
 
 import './App.css';
 
@@ -72,26 +73,20 @@ class App extends Component {
             {this.state.user && (
               <Route
                 path={'/profile/:id'}
-                render={props => (
-                  <Profile {...props} user={this.state.user} exact />
-                )} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
+                render={props => <Profile {...props} user={this.state.user} exact />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
               />
             )}
 
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => (
-                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
@@ -101,6 +96,7 @@ class App extends Component {
             <Route path="/jobpost/:id" component={SingleView} exact />
 
             <Route path="/jobpost/:id/application" component={FormView} />
+            <Route path="/application/success" component={FormSubmittedView} />
             <Route path="/error" component={ErrorView} />
             <Redirect from="/" to="/error" />
           </Switch>
