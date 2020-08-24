@@ -7,7 +7,7 @@ class ProfileEditView extends Component {
     super();
     this.state = {
       loaded: false,
-      user: '',
+      user: null,
       photo: null
     };
   }
@@ -29,13 +29,27 @@ class ProfileEditView extends Component {
 
   handleUserEdit = event => {
     event.preventDefault();
-
     const id = this.props.match.params.id;
-
-    const user = this.state.user;
-    const photo = this.state.photo;
-    const body = { user, photo };
-
+    const {
+      companyName,
+      email,
+      logo,
+      location,
+      foundedDate,
+      websiteUrl,
+      sizeInEmployees,
+      summary
+    } = this.state.user;
+    const body = {
+      companyName,
+      email,
+      logo,
+      location,
+      foundedDate,
+      websiteUrl,
+      sizeInEmployees,
+      summary
+    };
     editUser(id, body)
       .then(data => {
         this.props.history.push(`/profile/${id}`);
@@ -46,13 +60,10 @@ class ProfileEditView extends Component {
   };
 
   handleCompanyInfoChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
+    const { name, value } = event.target;
 
     this.setState({
-      user: {
-        [name]: value
-      }
+      user: { ...this.state.user, [name]: value }
     });
   };
 
@@ -70,7 +81,7 @@ class ProfileEditView extends Component {
                 type="text"
                 name="companyName"
                 placeholder="Company name"
-                value={user.companyName}
+                value={user.companyName || ''}
                 onChange={this.handleCompanyInfoChange}
               />
 
@@ -80,7 +91,7 @@ class ProfileEditView extends Component {
                 type="email"
                 name="email"
                 placeholder="company@example.com"
-                value={user.email}
+                value={user.email || ''}
                 onChange={this.handleCompanyInfoChange}
               />
 
@@ -90,7 +101,7 @@ class ProfileEditView extends Component {
                 type="text"
                 name="location"
                 placeholder="Paris"
-                value={user.location}
+                value={user.location || ''}
                 onChange={this.handleCompanyInfoChange}
               />
 
@@ -100,7 +111,7 @@ class ProfileEditView extends Component {
                 type="text"
                 name="foundedDate"
                 placeholder="dd/mm/yyyy"
-                value={user.foundedDate}
+                value={user.foundedDate || ''}
                 onChange={this.handleCompanyInfoChange}
               />
 
@@ -110,7 +121,7 @@ class ProfileEditView extends Component {
                 type="text"
                 name="websiteUrl"
                 placeholder="company.example"
-                value={user.websiteUrl}
+                value={user.websiteUrl || ''}
                 onChange={this.handleCompanyInfoChange}
               />
 
@@ -120,7 +131,7 @@ class ProfileEditView extends Component {
                 type="text"
                 name="sizeInEmployees"
                 placeholder="400 employees"
-                value={user.sizeInEmployees}
+                value={user.sizeInEmployees || ''}
                 onChange={this.handleCompanyInfoChange}
               />
 
@@ -130,7 +141,7 @@ class ProfileEditView extends Component {
                 type="text"
                 name="summary"
                 placeholder="Summary"
-                value={user.summary}
+                value={user.summary || ''}
                 onChange={this.handleCompanyInfoChange}
               />
               <button>Submit</button>

@@ -51,6 +51,8 @@ companyRouter.patch('/:id', (req, res, next) => {
     summary
   } = req.body;
 
+  console.log(req.body);
+
   User.findOneAndUpdate(
     { _id: id },
     {

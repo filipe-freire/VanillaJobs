@@ -13,7 +13,6 @@ class Profile extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     loadUser(id).then(data => {
-      console.log(data);
       const { user } = data;
 
       this.setState({ user });
@@ -21,7 +20,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('this is the state', this.state);
     return (
       <div>
         {(this.state.user && (

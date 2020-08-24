@@ -30,9 +30,9 @@ class App extends Component {
     loadMe()
       .then(data => {
         const user = data.user;
-        console.log(user);
+
         this.handleUserUpdate(user);
-        console.log('here is the user', user);
+
         this.setState({
           loaded: true
         });
