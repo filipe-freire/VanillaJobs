@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Profile = props => {
-  console.log(props.user);
+  console.log('these are the props', props);
   return (
     <div>
       {(props.user && (
@@ -17,7 +17,9 @@ const Profile = props => {
           <h3>Summary</h3>
 
           <h2>Job Posts</h2>
-          <Link to={`/profile/${props.match.params.id}/edit`}>Edit Profile</Link>
+          <Link to={`/profile/${props.match.params.id}/edit`}>
+            Edit Profile
+          </Link>
         </>
       )) || <h2>Loading...</h2>}
     </div>

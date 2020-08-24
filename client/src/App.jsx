@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   handleUserUpdate = user => {
-    console.log('handleUserUpdate ran: ', user);
+    //console.log('handleUserUpdate ran: ', user);
     this.setState({
       user
     });
@@ -59,6 +59,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.user);
     return (
       <div className="App">
         <h1>Vanilla Jobs</h1>
@@ -66,11 +67,12 @@ class App extends Component {
           <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
           <Switch>
             <Route path="/" component={Homepage} exact />
+
             {this.state.user && (
               <Route
                 user={this.state.user}
                 path={`/profile/${this.state.user._id}`}
-                component={Profile}
+                render={props => <Profile {...props} user={this.state.user} />}
                 exact
               />
             )}
@@ -79,14 +81,18 @@ class App extends Component {
 
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
