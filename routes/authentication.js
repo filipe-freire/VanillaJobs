@@ -34,6 +34,13 @@ authenticationRouter.post('/sign-in', async (req, res, next) => {
       password,
       user.passwordHashAndSalt
     );
+
+    if (!comaparePassword)
+      throw new Error('There was an error either with your email our password');
+
+    req.session.userId = user._id;
+    console.log(user);
+    res.json({ user: { companyName: user.companyName, email: user.email } });
   } catch (err) {
     next(err);
   }

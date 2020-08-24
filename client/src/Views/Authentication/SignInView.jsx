@@ -18,13 +18,16 @@ class SignInView extends Component {
       [name]: value
     });
   };
+
   handleFormSubmission = e => {
     e.preventDefault();
     const { email, password } = this.state;
     const body = { email, password };
     signIn(body)
       .then(data => {
-        console.log(data.user);
+        console.log('this is the user', data.user);
+        const { user } = data;
+        this.props.onUserUpdate(user);
       })
       .catch(err => {
         console.log(err);
