@@ -10,6 +10,8 @@ import Homepage from './Views/Homepage/Homepage';
 import FormView from './Views/Application/FormView';
 import CreateView from './Views/JobPosts/CreateView';
 import EditView from './Views/JobPosts/EditView';
+import Profile from './Views/Company/Profile';
+import ProfileEditView from './Views/Company/ProfileEditView';
 
 import './App.css';
 
@@ -60,13 +62,18 @@ class App extends Component {
           <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
           <Switch>
             <Route path="/" component={Homepage} exact />
+
+            <Route path="/profile/:id" component={Profile} exact />
+
+            <Route path="/profile/:id/edit" component={ProfileEditView} exact />
+
             <ProtectedRoute
               path="/authentication/sign-up"
               render={props => (
                 <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
               )}
               authorized={!this.state.user}
-              redirect="/"
+              redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
             <ProtectedRoute
               path="/authentication/sign-in"
@@ -74,7 +81,7 @@ class App extends Component {
                 <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
               )}
               authorized={!this.state.user}
-              redirect="/"
+              redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <Route path="/jobpost/create" component={CreateView} />

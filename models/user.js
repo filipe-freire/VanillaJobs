@@ -16,6 +16,24 @@ const schema = new mongoose.Schema({
   passwordHashAndSalt: {
     type: String,
     required: true
+  },
+  logo: {
+    type: String
+  },
+  location: {
+    type: String
+  },
+  foundedDate: {
+    type: String
+  },
+  websiteUrl: {
+    type: String
+  },
+  sizeInEmployees: {
+    type: String
+  },
+  summary: {
+    type: String
   }
 });
 
