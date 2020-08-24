@@ -8,6 +8,8 @@ import ErrorView from './Views/ErrorView';
 import { signOut } from './services/authentication';
 import Homepage from './Views/Homepage/Homepage';
 import FormView from './Views/Application/FormView';
+import Profile from './Views/Company/Profile';
+import ProfileEditView from './Views/Company/ProfileEditView';
 
 import './App.css';
 
@@ -58,22 +60,23 @@ class App extends Component {
           <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
           <Switch>
             <Route path="/" component={Homepage} exact />
+
+            <Route path="/profile/:id" component={Profile} exact />
+
+            <Route path="/profile/:id/edit" component={ProfileEditView} exact />
+
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
-              redirect="/"
+              redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => (
-                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
-              redirect="/"
+              redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <Route path="/jobpost/:id/application" component={FormView} />
