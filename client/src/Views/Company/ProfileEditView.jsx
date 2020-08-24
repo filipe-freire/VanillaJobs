@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { loadUser, editUser } from '../../services/company';
+import { loadMe } from '../../services/authentication';
+import { editUser } from '../../services/company';
 
 class ProfileEditView extends Component {
   constructor() {
@@ -13,7 +14,7 @@ class ProfileEditView extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    loadUser(id)
+    loadMe(id)
       .then(data => {
         const user = data.user;
         this.setState({

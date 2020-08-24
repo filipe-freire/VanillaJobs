@@ -6,7 +6,7 @@ import SignUpView from './Views/Authentication/SignUpView';
 import SignInView from './Views/Authentication/SignInView';
 import ErrorView from './Views/ErrorView';
 import { signOut } from './services/authentication';
-import { loadUser } from './services/company';
+import { loadMe } from './services/authentication';
 import Homepage from './Views/Homepage/Homepage';
 import FormView from './Views/Application/FormView';
 import CreateView from './Views/JobPosts/CreateView';
@@ -27,10 +27,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    loadUser()
+    loadMe()
       .then(data => {
         const user = data.user;
-
+        console.log(user);
         this.handleUserUpdate(user);
         this.setState({
           loaded: true
@@ -59,7 +59,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.user);
     return (
       <div className="App">
         <h1>Vanilla Jobs</h1>

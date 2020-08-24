@@ -52,4 +52,9 @@ authenticationRouter.post('/sign-out', async (req, res) => {
   res.json({});
 });
 
+authenticationRouter.get('/me', (req, res) => {
+  const user = req.user;
+  res.json({ user });
+});
+
 module.exports = authenticationRouter;
