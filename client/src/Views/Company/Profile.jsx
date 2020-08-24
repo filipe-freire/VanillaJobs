@@ -43,7 +43,9 @@ class Profile extends Component {
             <h3>Summary</h3>
 
             <h2>Job Posts</h2>
-            <Link to={`/profile/${this.props.match.params.id}/edit`}>Edit Profile</Link>
+            <Link to={`/profile/${this.props.match.params.id}/edit`}>
+              Edit Profile
+            </Link>
           </>
         )) || <h2>Loading...</h2>}
       </div>
