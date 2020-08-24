@@ -20,7 +20,7 @@ const deserializeUser = require('./middleware/deserialize-user');
 const jobApplicationRouter = require('./routes/job-application');
 const authenticationRouter = require('./routes/authentication');
 const companyRouter = require('./routes/company');
-const jobPostRouter = require('./routes/jobPost');
+const jobPostRouter = require('./routes/job-post');
 
 const mongoStore = connectMongo(expressSession);
 

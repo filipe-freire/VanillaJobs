@@ -8,6 +8,8 @@ import ErrorView from './Views/ErrorView';
 import { signOut } from './services/authentication';
 import Homepage from './Views/Homepage/Homepage';
 import FormView from './Views/Application/FormView';
+import CreateView from './Views/JobPosts/CreateView';
+import EditView from './Views/JobPosts/EditView';
 
 import './App.css';
 
@@ -66,7 +68,6 @@ class App extends Component {
               authorized={!this.state.user}
               redirect="/"
             />
-
             <ProtectedRoute
               path="/authentication/sign-in"
               render={props => (
@@ -75,6 +76,9 @@ class App extends Component {
               authorized={!this.state.user}
               redirect="/"
             />
+
+            <Route path="/jobpost/create" component={CreateView} />
+            <Route path="/jobpost/:id/edit" component={EditView} />
 
             <Route path="/jobpost/:id/application" component={FormView} />
             <Route path="/error" component={ErrorView} />

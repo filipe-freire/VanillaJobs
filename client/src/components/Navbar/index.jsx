@@ -6,7 +6,7 @@ const Navbar = props => {
   return (
     <nav>
       <Link to="/">Vanilla Jobs</Link>
-      <Link to="/INSERT_ENDPOINT_HERE">Create a Job Post</Link>
+      <Link to="/jobpost/create">Create a Job Post</Link>
       {(props.user && (
         <>
           <span>{props.user.companyName}</span>

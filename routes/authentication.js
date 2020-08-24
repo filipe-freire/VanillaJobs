@@ -45,7 +45,7 @@ authenticationRouter.post('/sign-in', async (req, res, next) => {
   }
 });
 
-authenticationRouter.post('/sign-out', async (req, res, next) => {
+authenticationRouter.post('/sign-out', async (req, res) => {
   req.session.destroy();
   res.json({});
 });
