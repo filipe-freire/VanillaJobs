@@ -23,7 +23,7 @@ class FormView extends Component {
 
   handleFormSubmission = event => {
     event.preventDefault();
-
+    const jobId = this.props.match.params.id;
     const {
       candidateName,
       candidateEmail,
@@ -38,7 +38,8 @@ class FormView extends Component {
       candidateLocation,
       motivation,
       linkedinUrl,
-      githubUrl
+      githubUrl,
+      jobId
     };
     submitApplication(body) // call sign up method from services
       .then(data => {

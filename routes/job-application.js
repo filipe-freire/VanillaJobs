@@ -13,7 +13,8 @@ jobApplicationRouter.post('/submitApplication', async (req, res, next) => {
     resumeUpload,
     linkedinUrl,
     githubUrl,
-    photo
+    photo,
+    jobId
   } = req.body;
   try {
     const jobApplication = await JobApplication.create({
@@ -24,7 +25,8 @@ jobApplicationRouter.post('/submitApplication', async (req, res, next) => {
       resumeUpload,
       linkedinUrl,
       githubUrl,
-      photo
+      photo,
+      jobId
     });
     res.json({
       jobApplication: {
@@ -36,7 +38,8 @@ jobApplicationRouter.post('/submitApplication', async (req, res, next) => {
         resumeUpload: jobApplication.resumeUpload,
         linkedinUrl: jobApplication.linkedinUrl,
         githubUrl: jobApplication.githubUrl,
-        photo: jobApplication.photo
+        photo: jobApplication.photo,
+        jobId: jobApplication.jobId
       }
     });
   } catch (error) {
