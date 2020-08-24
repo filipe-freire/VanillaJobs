@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  name: {
+  companyName: {
     type: String,
     trim: true
   },
@@ -12,6 +12,10 @@ const schema = new mongoose.Schema({
     required: true,
     lowercase: true,
     trim: true
+  },
+  passwordHashAndSalt: {
+    type: String,
+    required: true
   }
 });
 

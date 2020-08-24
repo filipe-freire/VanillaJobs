@@ -1,5 +1,8 @@
 'use strict';
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { join } = require('path');
 const express = require('express');
 const createError = require('http-errors');
@@ -8,33 +11,35 @@ const serveFavicon = require('serve-favicon');
 
 // Insert Necessary Packages
 const cors = require('cors');
-const dotenv = require('dotenv');
-dotenv.config();
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
-const mongoStore = connectMongo(expressSession);
 const mongoose = require('mongoose');
-
-const app = express();
 
 const deserializeUser = require('./middleware/deserialize-user');
 
-const applicationRouter = require('./routes/application');
+const jobApplicationRouter = require('./routes/job-application');
 const authenticationRouter = require('./routes/authentication');
 const companyRouter = require('./routes/company');
 const jobPostRouter = require('./routes/jobPost');
 
+const mongoStore = connectMongo(expressSession);
+
+const app = express();
+
+app.set('trust proxy', 1);
+
 app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 
-// Middleware
-
 app.use(
   cors({
-    origin: process.env.CLIENT_APP_DEV_URL,
-    credentials: true
+    credentials: true,
+    origin: ['http://localhost:3000']
   })
 );
+
+// Middleware
+
 app.use(express.json());
 app.use(
   expressSession({
@@ -55,7 +60,7 @@ app.use(deserializeUser);
 // CHANGE ROUTES TO OUR OWN
 app.use('/job-post', jobPostRouter);
 app.use('/authentication', authenticationRouter);
-app.use('/application', applicationRouter);
+app.use('/job-application', jobApplicationRouter);
 app.use('/company', companyRouter);
 
 // Catch missing routes and forward to error handler

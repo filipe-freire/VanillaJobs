@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
 import SignUpView from './Views/Authentication/SignUpView';
 import SignInView from './Views/Authentication/SignInView';
+import ErrorView from './Views/ErrorView';
+import { signOut } from './services/authentication';
+import Homepage from './Views/Homepage/Homepage';
+import FormView from './Views/Application/FormView';
 
 import './App.css';
-
-import Homepage from './Views/Homepage/Homepage';
 
 class App extends Component {
   constructor() {
@@ -17,10 +20,34 @@ class App extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   loadMe()
+  //     .then(data => {
+  //       const user = data.user;
+  //       this.handleUserUpdate(user);
+  //       this.setState({
+  //         loaded: true
+  //       });
+  //     })
+  //     .then(error => {
+  //       console.log(error);
+  //     });
+  // }
+
   handleUserUpdate = user => {
     this.setState({
       user
     });
+  };
+
+  handleSignOut = () => {
+    signOut()
+      .then(() => {
+        this.handleUserUpdate(null);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -28,9 +55,9 @@ class App extends Component {
       <div className="App">
         <h1>Vanilla Jobs</h1>
         <BrowserRouter>
+          <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
           <Switch>
-            <Route component={Homepage} />
-
+            <Route path="/" component={Homepage} exact />
             <ProtectedRoute
               path="/authentication/sign-up"
               render={props => (
@@ -48,6 +75,10 @@ class App extends Component {
               authorized={!this.state.user}
               redirect="/"
             />
+
+            <Route path="/jobpost/:id/application" component={FormView} />
+            <Route path="/error" component={ErrorView} />
+            <Redirect from="/" to="/error" />
           </Switch>
         </BrowserRouter>
       </div>
