@@ -31,7 +31,7 @@ app.use(logger('dev'));
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_APP_DEV_URL],
+    origin: process.env.CLIENT_APP_DEV_URL,
     credentials: true
   })
 );
@@ -51,8 +51,6 @@ app.use(
   })
 );
 app.use(deserializeUser);
-
-// Route Handlers
 
 // CHANGE ROUTES TO OUR OWN
 app.use('/job-post', jobPostRouter);

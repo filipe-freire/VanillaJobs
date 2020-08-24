@@ -9,4 +9,7 @@ export const signUp = body =>
   api.post('/sign-up', body).then(response => response.data);
 
 export const signIn = body =>
-  api.post('/sign-in', body).then(response => response.data);
+  api.post('/sign-in', body).then(response => {
+    console.log(response);
+    return response.data;
+  });

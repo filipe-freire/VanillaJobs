@@ -5,7 +5,6 @@ import { signIn } from './../../services/authentication';
 class SignInView extends Component {
   constructor() {
     super();
-
     this.state = {
       email: '',
       password: '',
@@ -13,21 +12,24 @@ class SignInView extends Component {
     };
   }
 
-  handleFormSubmission = e => {
-    e.preventDefault();
-    const { email, password } = this.state;
-    const body = { email, password };
-    signIn(body).then(data => {
-      console.log(data);
-    });
-    //creating service for sign-in form submission
-  };
-
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
       [name]: value
     });
+  };
+  handleFormSubmission = e => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    const body = { email, password };
+    signIn(body)
+      .then(data => {
+        console.log(data.user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    //creating service for sign-in form submission
   };
 
   render() {
