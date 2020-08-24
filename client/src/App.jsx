@@ -42,7 +42,7 @@ class App extends Component {
   }
 
   handleUserUpdate = user => {
-    console.log('handleUserUpdate ran: ', user);
+    //console.log('handleUserUpdate ran: ', user);
     this.setState({
       user
     });
@@ -66,12 +66,11 @@ class App extends Component {
           <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
           <Switch>
             <Route path="/" component={Homepage} exact />
+
             {this.state.user && (
               <Route
-                user={this.state.user}
                 path={`/profile/${this.state.user._id}`}
-                component={Profile}
-                exact
+                render={props => <Profile {...props} user={this.state.user} />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
               />
             )}
 

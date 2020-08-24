@@ -25,7 +25,7 @@ class SignInView extends Component {
     const body = { email, password };
     signIn(body)
       .then(data => {
-        console.log('this is the user', data.user);
+        //console.log('this is the user', data.user);
         const { user } = data;
         this.props.onUserUpdate(user);
       })
