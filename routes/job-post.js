@@ -40,6 +40,15 @@ jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
     });
 });
 
+jobPostRouter.get('/all', (req, res, next) => {
+  JobPost.find()
+    .then(jobPosts => {
+      console.log(jobPosts);
+      res.json({ jobPosts });
+    })
+    .catch(err => next(err));
+});
+
 jobPostRouter.get('/:id', async (req, res, next) => {
   const id = req.params.id;
 
@@ -75,7 +84,8 @@ jobPostRouter.patch('/:id', authenticationGuard, (req, res, next) => {
     tasks,
     requirements,
     seniority,
-    tech
+    tech,
+    category
   } = req.body;
 
   JobPost.findOneAndUpdate(
@@ -87,7 +97,8 @@ jobPostRouter.patch('/:id', authenticationGuard, (req, res, next) => {
       tasks,
       requirements,
       seniority,
-      tech
+      tech,
+      category
     }
   )
     .then(post => {

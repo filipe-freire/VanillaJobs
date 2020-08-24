@@ -15,3 +15,6 @@ export const loadJob = id => api.get(`/${id}`).then(response => response.data);
 
 export const deleteJob = id =>
   api.delete(`/${id}`).then(response => response.data);
+//
+
+export const loadAll = () => api.get('all').then(response => response.data);
