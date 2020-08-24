@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { loadJob } from './../../services/jobPosts';
+import { loadJob, deleteJob } from './../../services/jobPosts';
 
 class SingleView extends Component {
   constructor() {
@@ -16,7 +16,6 @@ class SingleView extends Component {
 
     loadJob(id).then(data => {
       const { post } = data;
-      console.log(post);
 
       this.setState({
         loaded: true,
@@ -24,6 +23,14 @@ class SingleView extends Component {
       });
     });
   }
+
+  handlePostDeletion = e => {
+    e.preventDefault();
+    const id = this.props.match.params.id;
+    deleteJob(id).then(() => {
+      this.props.history.push('/');
+    });
+  };
 
   render() {
     const post = this.state.post;
@@ -39,6 +46,9 @@ class SingleView extends Component {
             <p>{post.tasks[0]}</p>
             <p>{post.requirements[0]}</p>
             <p>{post.tech}</p>
+            <form onSubmit={this.handlePostDeletion}>
+              <button>Delete</button>
+            </form>
           </>
         )}
       </div>
