@@ -45,7 +45,7 @@ class FormView extends Component {
       .then(data => {
         // receives json file from backend
         console.log(data);
-        this.props.history.push(`/application/success`); // REDIRECT TO A "APPLICATION SUBMITTED SUCCESSFULLY PAGE"
+        this.props.history.push(`/application/success`);
       })
       .catch(error => {
         console.log(error);

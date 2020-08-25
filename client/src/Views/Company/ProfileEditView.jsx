@@ -7,8 +7,7 @@ class ProfileEditView extends Component {
     super();
     this.state = {
       loaded: false,
-      user: null,
-      photo: null
+      user: null
     };
   }
 
@@ -17,6 +16,7 @@ class ProfileEditView extends Component {
     loadUser(id)
       .then(data => {
         const user = data.user;
+        console.log(user.logo);
         this.setState({
           loaded: true,
           user
@@ -67,6 +67,15 @@ class ProfileEditView extends Component {
     });
   };
 
+  handleLogoInputChange = event => {
+    const file = event.target.files[0];
+    console.log(file);
+
+    this.setState({
+      user: { ...this.state.user, logo: file }
+    });
+  };
+
   render() {
     const user = this.state.user;
     return (
@@ -93,6 +102,14 @@ class ProfileEditView extends Component {
                 placeholder="company@example.com"
                 value={user.email || ''}
                 onChange={this.handleCompanyInfoChange}
+              />
+
+              <label htmlFor="input-logo">Company Logo</label>
+              <input
+                id="input-logo"
+                type="file"
+                name="logo"
+                onChange={this.handleLogoInputChange}
               />
 
               <label htmlFor="input-location">Company Location</label>

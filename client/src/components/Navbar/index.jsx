@@ -7,9 +7,9 @@ const Navbar = props => {
   return (
     <nav>
       <Link to="/">Vanilla Jobs</Link>
-      <Link to="/jobpost/create">Create a Job Post</Link>
       {(props.user && (
         <>
+          <Link to="/jobpost/create">Create a Job Post</Link>
           <Link to={`/profile/${props.user._id}`}> {`${props.user.companyName}'s Profile`} </Link>
           <button onClick={props.onSignOut}>Sign Out</button>
         </>
