@@ -15,6 +15,7 @@ import Profile from './Views/Company/Profile';
 import ProfileEditView from './Views/Company/ProfileEditView';
 import SingleView from './Views/JobPosts/SingleView';
 import FormSubmittedView from './Views/Application/FormSubmittedView';
+import AllCompanies from './Views/Company/AllCompanies';
 
 import './App.css';
 
@@ -54,7 +55,7 @@ class App extends Component {
     signOut()
       .then(() => {
         this.handleUserUpdate(null);
-        window.location.href = '/'; // redirects to homepage on signout
+        window.location.href = '/'; // redirects to homepage on sign-out
       })
       .catch(error => {
         console.log(error);
@@ -95,8 +96,10 @@ class App extends Component {
             <Route path="/jobpost/create" component={CreateView} />
             <Route path="/jobpost/:id/edit" component={EditView} />
             <Route path="/jobpost/:id" component={SingleView} exact />
-
             <Route path="/jobpost/:id/application" component={FormView} />
+
+            <Route path="/listCompanies" component={AllCompanies} />
+
             <Route path="/application/success" component={FormSubmittedView} />
             <Route path="/error" component={ErrorView} />
             <Redirect from="/" to="/error" />

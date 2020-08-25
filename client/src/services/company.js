@@ -8,3 +8,5 @@ const api = axios.create({
 export const editUser = (id, body) => api.patch(`/${id}`, body).then(response => response.data);
 
 export const loadUser = id => api.get(`/${id}`).then(response => response.data);
+
+export const loadAllUsers = () => api.get(`/listAll`).then(response => response.data);

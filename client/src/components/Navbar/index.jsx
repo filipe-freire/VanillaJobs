@@ -15,6 +15,7 @@ const Navbar = props => {
         </>
       )) || (
         <>
+          <Link to="/listCompanies">Companies</Link>
           <Link to="/authentication/sign-up">Sign Up</Link>
           <Link to="/authentication/sign-in">Sign In</Link>
         </>

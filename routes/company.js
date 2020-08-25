@@ -10,6 +10,20 @@ companyRouter.get('/me', (req, res) => {
   res.json({ user });
 });
 
+// Retrieve and send all companies from the database
+companyRouter.get('/listAll', async (req, res, next) => {
+  try {
+    const allUsers = await User.find();
+    if (allUsers) {
+      res.json({ allUsers });
+    } else {
+      next();
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 companyRouter.get('/:id', async (req, res, next) => {
   const id = req.user._id;
 
