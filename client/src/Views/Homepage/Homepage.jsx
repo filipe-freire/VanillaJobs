@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { loadAll } from './../../services/jobPosts';
 
 class Homepage extends Component {
@@ -28,7 +30,11 @@ class Homepage extends Component {
         <h1>Vanilla Jobs - Homepage</h1>
         {this.state.loaded &&
           this.state.jobPosts.map(value => {
-            return <h3 key={value._id}>{value.title}</h3>;
+            return (
+              <Link key={value._id} to={`/jobpost/${value._id}`}>
+                {value.title}
+              </Link>
+            );
           })}
       </div>
     );
