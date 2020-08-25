@@ -27,6 +27,34 @@ class Homepage extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contentSearch !== prevState.contentSearch) {
+      loadAll().then(data => {
+        const { jobPosts } = data;
+        console.log(jobPosts);
+        const filteredArray = jobPosts.filter(
+          value =>
+            value.category.includes(this.state.contentSearch) ||
+            value.title.includes(this.state.contentSearch) ||
+            value.location.includes(this.state.contentSearch) ||
+            value.seniority.includes(this.state.contentSearch) ||
+            value.creator.companyName.includes(this.state.contentSearch)
+        );
+
+        this.setState({
+          jobPosts: filteredArray
+        });
+      });
+    }
+  }
+
+  handleSearchInput = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     return (
       <div className="Homepage pt-5">
@@ -45,6 +73,7 @@ class Homepage extends Component {
             onChange={this.handleSearchInput}
             className="col-11 p-0 ml-4 "
             placeholder="Search"
+            name="contentSearch"
           />
         </form>
 
