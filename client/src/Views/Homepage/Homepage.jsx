@@ -48,22 +48,35 @@ class Homepage extends Component {
           />
         </form>
 
-        <div className="Job-offers-container">
-          <h3 className="text-left">Front end</h3>
-        </div>
-
-        <ul>
+        <div className="Job-offers-container mb-5">
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 className="text-left m-0 ">Front end</h3>
+            </div>
+            <Link className="m-0" to="#">
+              More →
+            </Link>
+          </div>
           {this.state.loaded &&
             this.state.jobPosts.map(value => {
               return (
-                <li key={value._id}>
-                  <Link key={value._id} to={`/jobpost/${value._id}`}>
-                    {value.title}
-                  </Link>
-                </li>
+                <Link
+                  className="Job-post d-flex p-2 my-2"
+                  key={value._id}
+                  to={`/jobpost/${value._id}`}
+                >
+                  <img src={value.creator.logo} alt="company logo" />
+                  <div className="d-flex flex-column justify-content-between align-items-start ml-4">
+                    <h5 className="m-0">{value.title}</h5>
+                    <p className="m-0">{value.creator.companyName}</p>
+                    <p className="m-0">
+                      {value.seniority} | {value.creator.location}
+                    </p>
+                  </div>
+                </Link>
               );
             })}
-        </ul>
+        </div>
       </div>
     );
   }

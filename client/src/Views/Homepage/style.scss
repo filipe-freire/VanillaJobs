@@ -1,3 +1,5 @@
+$border: 1px solid rgb(206, 206, 206);
+
 .Homepage {
   width: 90%;
   margin: 0 auto;
@@ -19,10 +21,45 @@
   }
 
   form {
-    border: 1px solid rgb(206, 206, 206);
+    border: $border;
     input {
       margin: 0;
       border: none;
+    }
+  }
+
+  .Job-offers-container {
+    div {
+      div {
+        padding-bottom: 3px;
+        background: linear-gradient(
+          to right,
+          rgba(115, 171, 255, 1),
+          rgba(55, 255, 243, 0.04)
+        );
+      }
+      h3 {
+        background-color: #fff;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .Job-post {
+    border: $border;
+
+    img {
+      max-width: 3.5rem;
+    }
+
+    div {
+      h5 {
+        font-size: 14px;
+      }
+
+      p {
+        font-size: 12px;
+      }
     }
   }
 }
