@@ -32,8 +32,7 @@ class Navbar extends Component {
           </Link>
           <button
             className={
-              (this.state.menuToggled &&
-                'hamburger hamburger--squeeze is-active') ||
+              (this.state.menuToggled && 'hamburger hamburger--squeeze is-active') ||
               'hamburger hamburger--squeeze'
             }
             type="button"
@@ -44,35 +43,35 @@ class Navbar extends Component {
             </span>
           </button>
         </nav>
-        {this.state.menuToggled && (
-          <div className="menu-layer-dar" onClick={this.toggleMenu}></div>
-        )}
+        {this.state.menuToggled && <div className="menu-layer-dar" onClick={this.toggleMenu}></div>}
         {this.state.menuToggled && (
           <div className="menu">
+            <Link to="/" onClick={this.toggleMenu}>
+              Home
+            </Link>
+            <Link to="/listCompanies" onClick={this.toggleMenu}>
+              All Companies
+            </Link>
             {(this.props.user && (
               <>
-                <Link to="/jobpost/create" onClick={this.toggleMenu}>
-                  Create a Job Post
-                </Link>
-                <Link
-                  to={`/profile/${this.props.user._id}`}
-                  onClick={this.toggleMenu}
-                >
+                <Link to={`/profile/${this.props.user._id}`} onClick={this.toggleMenu}>
                   {' '}
                   {`${this.props.user.companyName}'s Profile`}{' '}
                 </Link>
-                <Link onClick={this.props.onSignOut}>Sign Out</Link>
+                <Link to="/jobpost/create" onClick={this.toggleMenu}>
+                  Create a Job Post
+                </Link>
+                <Link to="/" onClick={this.props.onSignOut}>
+                  Sign Out
+                </Link>
               </>
             )) || (
               <>
-                <Link to="/authentication/sign-up" onClick={this.toggleMenu}>
-                  Sign Up
-                </Link>
                 <Link to="/authentication/sign-in" onClick={this.toggleMenu}>
                   Sign In
                 </Link>
-                <Link to="/listCompanies" onClick={this.toggleMenu}>
-                  Companies
+                <Link to="/authentication/sign-up" onClick={this.toggleMenu}>
+                  Sign Up
                 </Link>
               </>
             )}
