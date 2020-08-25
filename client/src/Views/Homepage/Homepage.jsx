@@ -31,14 +31,23 @@ class Homepage extends Component {
     if (this.state.contentSearch !== prevState.contentSearch) {
       loadAll().then(data => {
         const { jobPosts } = data;
-        console.log(jobPosts);
         const filteredArray = jobPosts.filter(
           value =>
-            value.category.includes(this.state.contentSearch) ||
-            value.title.includes(this.state.contentSearch) ||
-            value.location.includes(this.state.contentSearch) ||
-            value.seniority.includes(this.state.contentSearch) ||
-            value.creator.companyName.includes(this.state.contentSearch)
+            value.category
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.title
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.location
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.seniority
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.creator.companyName
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase())
         );
 
         this.setState({
@@ -99,7 +108,7 @@ class Homepage extends Component {
                     <h5 className="m-0">{value.title}</h5>
                     <p className="m-0">{value.creator.companyName}</p>
                     <p className="m-0">
-                      {value.seniority} | {value.creator.location}
+                      {value.seniority} | {value.location}
                     </p>
                   </div>
                 </Link>
