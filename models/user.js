@@ -18,7 +18,9 @@ const schema = new mongoose.Schema({
     required: true
   },
   logo: {
-    type: String
+    type: String,
+    default:
+      'https://res.cloudinary.com/dlfxinw9v/image/upload/v1598343581/vanilla-jobs-logo_keqzgg.png'
   },
   location: {
     type: String
