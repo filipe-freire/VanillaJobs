@@ -17,7 +17,7 @@ import SingleView from './Views/JobPosts/SingleView';
 import FormSubmittedView from './Views/Application/FormSubmittedView';
 import AllCompanies from './Views/Company/AllCompanies';
 
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   constructor() {
@@ -65,7 +65,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Vanilla Jobs</h1>
         <BrowserRouter>
           <Navbar user={this.state.user} onSignOut={this.handleSignOut} />
           <Switch>
@@ -75,20 +74,26 @@ class App extends Component {
             {this.state.user && (
               <Route
                 path={'/profile/:id'}
-                render={props => <Profile {...props} user={this.state.user} exact />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
+                render={props => (
+                  <Profile {...props} user={this.state.user} exact />
+                )} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
               />
             )}
 
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
+              render={props => (
+                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
+              )}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
