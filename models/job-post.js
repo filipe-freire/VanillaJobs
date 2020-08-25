@@ -35,16 +35,47 @@ const schema = new mongoose.Schema({
 
   seniority: {
     type: String,
-    required: true
+    required: true,
+    enum: ['Junior', 'Mid', 'Senior']
   },
 
-  tech: {
-    type: [],
-    required: true
-  },
+  tech: [
+    {
+      type: String,
+      required: true,
+      enum: [
+        'HTML',
+        'CSS',
+        'NodeJS',
+        'ReactJS',
+        'VueJS',
+        'AngularJS',
+        'Python',
+        'Swift',
+        'MongoDB',
+        'Java',
+        'SQL',
+        'GraphQL',
+        'AWS',
+        'Git',
+        'Flask',
+        'Ruby',
+        'Express',
+        'Javascript',
+        'Bootstrap',
+        'SASS',
+        'PHP',
+        '.NET',
+        'C#',
+        'C++'
+      ]
+    }
+  ],
+
   category: {
     type: String,
-    required: true
+    required: true,
+    enum: ['Frontend', 'Backend', 'Fullstack']
   }
 });
 
