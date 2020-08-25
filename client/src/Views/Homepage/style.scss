@@ -1,0 +1,28 @@
+.Homepage {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+
+  .Homepage-header {
+    position: relative;
+    background-image: url('https://res.cloudinary.com/dtty9rclm/image/upload/v1598376431/Project%203%20images/background_v3scqh.png');
+    background-size: contain;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    h1 {
+      margin-left: 1rem;
+      width: 70%;
+      font-weight: 300;
+      text-align: start;
+      line-height: 175%;
+    }
+  }
+
+  form {
+    border: 1px solid rgb(206, 206, 206);
+    input {
+      margin: 0;
+      border: none;
+    }
+  }
+}
