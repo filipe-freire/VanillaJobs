@@ -31,7 +31,7 @@ class AllCompanies extends Component {
           <ul>
             {this.state.allUsers.map(user => (
               <li key={user._id}>
-                <Link to={`/profile/${user._id}`}>
+                <Link to={`/public/profile/${user._id}`}>
                   <h1>{user.companyName} </h1>
                 </Link>
               </li>
