@@ -16,6 +16,7 @@ import ProfileEditView from './Views/Company/ProfileEditView';
 import SingleView from './Views/JobPosts/SingleView';
 import FormSubmittedView from './Views/Application/FormSubmittedView';
 import AllCompanies from './Views/Company/AllCompanies';
+import PublicProfile from './Views/Company/PublicProfile';
 
 import './App.scss';
 
@@ -39,7 +40,7 @@ class App extends Component {
           loaded: true
         });
       })
-      .then(error => {
+      .catch(error => {
         console.log(error);
       });
   }
@@ -70,10 +71,11 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Homepage} exact />
 
+            <Route path="/public/profile/:id" component={PublicProfile} exact />
             <Route path="/profile/:id/edit" component={ProfileEditView} exact />
             {this.state.user && (
               <Route
-                path={'/profile/:id'}
+                path="/profile/:id"
                 render={props => (
                   <Profile {...props} user={this.state.user} exact />
                 )} // Anytime we want to pass app.jsx props and more to the component, we use this syntax

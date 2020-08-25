@@ -25,7 +25,7 @@ companyRouter.get('/listAll', async (req, res, next) => {
 });
 
 companyRouter.get('/:id', async (req, res, next) => {
-  const id = req.user._id;
+  const id = req.params.id;
 
   try {
     const user = await User.findById(id);

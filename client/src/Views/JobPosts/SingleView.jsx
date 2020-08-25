@@ -66,7 +66,7 @@ class SingleView extends Component {
             <p>
               <span style={{ fontWeight: 'bold' }}>Tech Used:</span> {post.tech}
             </p>
-            {this.state.user._id === this.state.post.creator._id && (
+            {this.state.user && (
               <form onSubmit={this.handlePostDeletion}>
                 <button>Delete</button>
               </form>
