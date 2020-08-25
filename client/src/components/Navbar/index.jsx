@@ -24,7 +24,7 @@ class Navbar extends Component {
         <nav>
           <Link to="/" className="logo-link">
             <img
-              src="./images/vanilla-logo.svg"
+              src="https://res.cloudinary.com/dtty9rclm/image/upload/v1598376231/Project%203%20images/vanilla-logo_gismhr.svg"
               alt="Vanilla jobs logo"
               className="vanilla-logo"
             ></img>
@@ -56,18 +56,18 @@ class Navbar extends Component {
                   {' '}
                   {`${this.props.user.companyName}'s Profile`}{' '}
                 </Link>
-                <button onClick={this.props.onSignOut}>Sign Out</button>
+                <Link onClick={this.props.onSignOut}>Sign Out</Link>
               </>
             )) || (
               <>
-                <Link to="/listCompanies" onClick={this.toggleMenu}>
-                  Companies
-                </Link>
                 <Link to="/authentication/sign-up" onClick={this.toggleMenu}>
                   Sign Up
                 </Link>
                 <Link to="/authentication/sign-in" onClick={this.toggleMenu}>
                   Sign In
+                </Link>
+                <Link to="/listCompanies" onClick={this.toggleMenu}>
+                  Companies
                 </Link>
               </>
             )}
