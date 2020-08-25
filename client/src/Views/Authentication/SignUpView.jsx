@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { signUp } from '../../services/authentication';
 
+import Button from './../../components/Button';
+
 class AuthSignUpView extends Component {
   constructor() {
     super();
@@ -67,7 +69,7 @@ class AuthSignUpView extends Component {
             onChange={this.handleInputChange}
           />
 
-          <button>Sign Up</button>
+          <Button name="Sign up" />
         </form>
       </div>
     );

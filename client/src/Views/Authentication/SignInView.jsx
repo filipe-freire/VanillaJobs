@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Button from './../../components/Button';
+
 import { signIn } from './../../services/authentication';
 
 class SignInView extends Component {
@@ -58,7 +60,7 @@ class SignInView extends Component {
             value={this.state.password}
             onChange={this.handleInputChange}
           />
-          <button>Submit</button>
+          <Button name="Sign in" />
         </form>
       </div>
     );

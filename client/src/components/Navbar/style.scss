@@ -1,5 +1,51 @@
 nav {
-  & > * {
-    margin-left: 1em;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -3px 4px 4px rgba(95, 73, 231, 1);
+  overflow: hidden;
+  background-color: #fff;
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+
+    .vanilla-logo {
+      width: 4rem;
+    }
+    h3 {
+      margin: 0;
+      font-weight: 400;
+    }
   }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: fixed;
+  height: 100vh;
+  width: 70vw;
+  right: 0;
+  top: 0;
+  background-color: rgb(255, 255, 255);
+  z-index: 10;
+
+  a {
+    margin: 2rem 0;
+    font-size: 2rem;
+  }
+}
+
+.menu-layer-dar {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.329);
+  z-index: 1;
 }
