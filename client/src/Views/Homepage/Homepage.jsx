@@ -28,14 +28,18 @@ class Homepage extends Component {
     return (
       <div>
         <h1>Vanilla Jobs - Homepage</h1>
-        {this.state.loaded &&
-          this.state.jobPosts.map(value => {
-            return (
-              <Link key={value._id} to={`/jobpost/${value._id}`}>
-                {value.title}
-              </Link>
-            );
-          })}
+        <ul>
+          {this.state.loaded &&
+            this.state.jobPosts.map(value => {
+              return (
+                <li key={value._id}>
+                  <Link key={value._id} to={`/jobpost/${value._id}`}>
+                    {value.title}
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
       </div>
     );
   }

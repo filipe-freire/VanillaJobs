@@ -54,6 +54,7 @@ class App extends Component {
     signOut()
       .then(() => {
         this.handleUserUpdate(null);
+        window.location.href = '/'; // redirects to homepage on signout
       })
       .catch(error => {
         console.log(error);
