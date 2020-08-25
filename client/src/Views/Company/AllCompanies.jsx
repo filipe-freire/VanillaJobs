@@ -14,7 +14,6 @@ class AllCompanies extends Component {
     loadAllUsers()
       .then(data => {
         const { allUsers } = data;
-        console.log(allUsers);
 
         this.setState({
           allUsers
