@@ -55,6 +55,9 @@ class SingleView extends Component {
               <span style={{ fontWeight: 'bold' }}>Location:</span> {post.location}
             </p>
             <p>
+              <span style={{ fontWeight: 'bold' }}>Category:</span> {post.category}
+            </p>
+            <p>
               <span style={{ fontWeight: 'bold' }}>Seniority Level:</span> {post.seniority}
             </p>
             <p>

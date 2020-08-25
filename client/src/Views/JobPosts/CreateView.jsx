@@ -73,14 +73,24 @@ class Creation extends Component {
           onChange={this.handleUserInput}
         />
         <label htmlFor="category">Category</label>
-        <input
+        <select
+          name="category"
+          id="category"
+          value={this.state.value}
+          onChange={this.handleUserInput}
+        >
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Fullstack">Fullstack</option>
+        </select>
+        {/* <input
           type="text"
           id="category"
           placeholder="Category"
           name="category"
           value={this.state.category}
           onChange={this.handleUserInput}
-        />
+        /> */}
         <label htmlFor="location">Job Location</label>
         <input
           type="text"
