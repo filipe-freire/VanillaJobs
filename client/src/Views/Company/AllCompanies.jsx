@@ -14,9 +14,11 @@ class AllCompanies extends Component {
     loadAllUsers()
       .then(data => {
         const { allUsers } = data;
-        this.setState = {
+        console.log(allUsers);
+
+        this.setState({
           allUsers
-        };
+        });
       })
       .catch(error => console.log(error));
   }
@@ -28,8 +30,8 @@ class AllCompanies extends Component {
         {(this.state.allUsers && (
           <ul>
             {this.state.allUsers.map(user => (
-              <li>
-                <Link>
+              <li key={user._id}>
+                <Link to={`/profile/${user._id}`}>
                   <h1>{user.companyName} </h1>
                 </Link>
               </li>

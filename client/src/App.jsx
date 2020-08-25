@@ -72,6 +72,7 @@ class App extends Component {
             <Route path="/" component={Homepage} exact />
 
             <Route path="/profile/:id/edit" component={ProfileEditView} exact />
+
             {this.state.user && (
               <Route
                 path={'/profile/:id'}
