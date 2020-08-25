@@ -7,7 +7,6 @@ import './job-post-form.scss';
 class Creation extends Component {
   constructor() {
     super();
-
     this.state = {
       creator: '',
       title: '',
@@ -46,7 +45,12 @@ class Creation extends Component {
       tech,
       category
     };
-    postJob(body).then(data => console.log(data));
+    postJob(body)
+      .then(data => {
+        console.log(data.post);
+        this.props.history.push(`/profile/${data.post.creator}`);
+      })
+      .catch(error => console.log(error));
   };
 
   handleUserInput = e => {
