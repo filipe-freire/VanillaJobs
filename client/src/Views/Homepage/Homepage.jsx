@@ -27,6 +27,43 @@ class Homepage extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contentSearch !== prevState.contentSearch) {
+      loadAll().then(data => {
+        const { jobPosts } = data;
+        const filteredArray = jobPosts.filter(
+          value =>
+            value.category
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.title
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.location
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.seniority
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.creator.companyName
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase())
+        );
+
+        this.setState({
+          jobPosts: filteredArray
+        });
+      });
+    }
+  }
+
+  handleSearchInput = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     return (
       <div className="Homepage pt-5">
@@ -45,25 +82,39 @@ class Homepage extends Component {
             onChange={this.handleSearchInput}
             className="col-11 p-0 ml-4 "
             placeholder="Search"
+            name="contentSearch"
           />
         </form>
 
-        <div className="Job-offers-container">
-          <h3 className="text-left">Front end</h3>
-        </div>
-
-        <ul>
+        <div className="Job-offers-container mb-5">
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 className="text-left m-0 ">Front end</h3>
+            </div>
+            <Link className="m-0" to="#">
+              More →
+            </Link>
+          </div>
           {this.state.loaded &&
             this.state.jobPosts.map(value => {
               return (
-                <li key={value._id}>
-                  <Link key={value._id} to={`/jobpost/${value._id}`}>
-                    {value.title}
-                  </Link>
-                </li>
+                <Link
+                  className="Job-post d-flex p-2 my-2"
+                  key={value._id}
+                  to={`/jobpost/${value._id}`}
+                >
+                  <img src={value.creator.logo} alt="company logo" />
+                  <div className="d-flex flex-column justify-content-between align-items-start ml-4">
+                    <h5 className="m-0">{value.title}</h5>
+                    <p className="m-0">{value.creator.companyName}</p>
+                    <p className="m-0">
+                      {value.seniority} | {value.location}
+                    </p>
+                  </div>
+                </Link>
               );
             })}
-        </ul>
+        </div>
       </div>
     );
   }

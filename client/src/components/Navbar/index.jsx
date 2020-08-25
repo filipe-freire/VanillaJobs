@@ -51,8 +51,13 @@ class Navbar extends Component {
           <div className="menu">
             {(this.props.user && (
               <>
-                <Link to="/jobpost/create">Create a Job Post</Link>
-                <Link to={`/profile/${this.props.user._id}`}>
+                <Link to="/jobpost/create" onClick={this.toggleMenu}>
+                  Create a Job Post
+                </Link>
+                <Link
+                  to={`/profile/${this.props.user._id}`}
+                  onClick={this.toggleMenu}
+                >
                   {' '}
                   {`${this.props.user.companyName}'s Profile`}{' '}
                 </Link>

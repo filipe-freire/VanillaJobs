@@ -9,7 +9,16 @@ const authenticationGuard = require('./../middleware/route-authentication-guard'
 
 jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
   console.log(req.body);
-  const { title, location, description, tasks, requirements, seniority, tech, category } = req.body;
+  const {
+    title,
+    location,
+    description,
+    tasks,
+    requirements,
+    seniority,
+    tech,
+    category
+  } = req.body;
 
   JobPost.create({
     creator: req.user._id,
@@ -31,13 +40,19 @@ jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
     });
 });
 
-jobPostRouter.get('/all', (req, res, next) => {
-  JobPost.find()
-    .then(jobPosts => {
+jobPostRouter.get('/all', async (req, res, next) => {
+  try {
+    const jobPosts = await JobPost.find().populate('creator');
+
+    if (jobPosts) {
       console.log(jobPosts);
       res.json({ jobPosts });
-    })
-    .catch(err => next(err));
+    } else {
+      next();
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 jobPostRouter.get('/:id', async (req, res, next) => {
@@ -68,7 +83,16 @@ jobPostRouter.delete('/:id', authenticationGuard, (req, res, next) => {
 jobPostRouter.patch('/:id', authenticationGuard, (req, res, next) => {
   const id = req.params.id;
 
-  const { title, location, description, tasks, requirements, seniority, tech, category } = req.body;
+  const {
+    title,
+    location,
+    description,
+    tasks,
+    requirements,
+    seniority,
+    tech,
+    category
+  } = req.body;
 
   JobPost.findOneAndUpdate(
     { _id: id, creator: req.user._id },
