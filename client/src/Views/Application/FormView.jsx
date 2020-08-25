@@ -41,6 +41,9 @@ class FormView extends Component {
       githubUrl,
       jobId
     };
+    //send email to user here
+    //sendEmailToUser(candidateEmail);
+
     submitApplication(body) // call sign up method from services
       .then(data => {
         // receives json file from backend
@@ -51,6 +54,42 @@ class FormView extends Component {
         console.log(error);
       });
   };
+
+  sendEmailToUser() {
+    const nodemailer = require('nodemailer');
+    const transport = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.NODEMAILER_EMAIL,
+        pass: process.env.NODEMAILER_PASSWORD
+      }
+    });
+
+    transport
+      .sendMail({
+        from: process.env.NODEMAILER_EMAIL,
+        to: user.email,
+        subject: 'Vanilla Jobs - Application Submitted Successfully!',
+        html: `<html>  
+          <head>
+          <title>Thanks for choosing Vanilla Jobs</title>  
+          <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">  
+          </head>  
+          <style>  
+          body  {font-family:arial;font-size: 9pt; background-color: orange }  
+           </style>
+          <body bgcolor="#FFFFFF" text="#000000">  
+          <h1> Thanks for choosing Vanilla Jobs! </h1>
+          </body>
+          </html>`
+      })
+      .then(data => {
+        console.log('Email was sent to the user');
+      })
+      .catch(error => {
+        console.log('There was an error sending the email', error);
+      });
+  }
 
   render() {
     return (

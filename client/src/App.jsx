@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   handleUserUpdate = user => {
-    //console.log('handleUserUpdate ran: ', user);
     this.setState({
       user
     });
