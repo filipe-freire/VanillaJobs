@@ -20,7 +20,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navbar-component">
         <nav>
           <Link to="/" className="logo-link">
             <img
@@ -32,8 +32,7 @@ class Navbar extends Component {
           </Link>
           <button
             className={
-              (this.state.menuToggled &&
-                'hamburger hamburger--squeeze is-active') ||
+              (this.state.menuToggled && 'hamburger hamburger--squeeze is-active') ||
               'hamburger hamburger--squeeze'
             }
             type="button"
@@ -44,9 +43,7 @@ class Navbar extends Component {
             </span>
           </button>
         </nav>
-        {this.state.menuToggled && (
-          <div className="menu-layer-dar" onClick={this.toggleMenu}></div>
-        )}
+        {this.state.menuToggled && <div className="menu-layer-dar" onClick={this.toggleMenu}></div>}
         {this.state.menuToggled && (
           <div className="menu">
             <Link to="/" onClick={this.toggleMenu}>
@@ -57,10 +54,7 @@ class Navbar extends Component {
             </Link>
             {(this.props.user && (
               <>
-                <Link
-                  to={`/profile/${this.props.user._id}`}
-                  onClick={this.toggleMenu}
-                >
+                <Link to={`/profile/${this.props.user._id}`} onClick={this.toggleMenu}>
                   {' '}
                   {`${this.props.user.companyName}'s Profile`}{' '}
                 </Link>

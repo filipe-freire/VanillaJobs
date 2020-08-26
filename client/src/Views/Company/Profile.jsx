@@ -29,7 +29,7 @@ class Profile extends Component {
             ...acc,
             [post._id]: numOfApp.applicants.length
           };
-          console.log(newItem);
+          //console.log(newItem);
           this.setState({ [post._id]: numOfApp.applicants.length });
           acc = newItem;
           return acc;
@@ -116,10 +116,8 @@ class Profile extends Component {
                         />
                         <div className="d-flex flex-column justify-content-between align-items-start ml-4">
                           <h5 className="m-0">{post.title}</h5>
-                          <p className="m-0">{post.creator.companyName}</p>
-                          <p className="m-0">
-                            {post.seniority} | {post.location}
-                          </p>
+                          <p className="m-0"> Seniority: {post.seniority}</p>
+                          <p className="m-0">Location: {post.location}</p>
                         </div>
                       </Link>
                       {/* <Link to={`/jobpost/${post._id}`}>
