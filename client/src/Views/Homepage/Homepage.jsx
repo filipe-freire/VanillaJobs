@@ -60,7 +60,7 @@ class Homepage extends Component {
         <div className="Homepage-header pt-3">
           <h1 className="pb-3">Designed to make your job easier</h1>
         </div>
-        <form className="d-flex flex-row overflow-hidden py-2">
+        <form className="d-flex flex-row overflow-hidden py-2 col-lg-6">
           <img
             src="https://res.cloudinary.com/dtty9rclm/image/upload/v1598377654/Project%203%20images/procurar_1_aml9yp.png"
             alt="search-img"
@@ -70,7 +70,7 @@ class Homepage extends Component {
             type="text"
             value={this.state.contentSearch}
             onChange={this.handleSearchInput}
-            className="col-11 p-0 ml-4 "
+            className="col-sm-11 col-lg-10 p-0 ml-4 "
             placeholder="Search"
             name="contentSearch"
           />
