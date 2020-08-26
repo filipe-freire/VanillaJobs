@@ -47,7 +47,7 @@ const schema = new mongoose.Schema({
         'HTML',
         'CSS',
         'NodeJS',
-        'ReactJS',
+        'React',
         'VueJS',
         'AngularJS',
         'Python',
@@ -75,7 +75,7 @@ const schema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['Frontend', 'Backend', 'Fullstack']
+    enum: ['Front end', 'Back end', 'Fullstack']
   }
 });
 

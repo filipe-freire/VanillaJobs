@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
-import { editJob } from './../../services/jobPosts';
+import { loadJob, editJob } from './../../services/jobPosts';
+
+import InputCheckbox from '../../components/InputCheckbox';
+import InputText from './../../components/InputText';
+
+import './styles/job-post-text-inputs.scss';
+import './styles/job-post-radio.scss';
 
 class EditView extends Component {
   constructor() {
@@ -20,7 +26,6 @@ class EditView extends Component {
 
   handleUserInput = e => {
     const { name, value } = e.target;
-
     this.setState({
       [name]: value
     });
@@ -80,82 +85,147 @@ class EditView extends Component {
     });
   };
 
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    loadJob(id).then(data => {
+      const {
+        creator,
+        title,
+        location,
+        description,
+        tasks,
+        requirements,
+        seniority,
+        tech,
+        category
+      } = data.post;
+      console.log(data);
+      this.setState({
+        creator,
+        title,
+        location,
+        description,
+        tasks,
+        requirements,
+        seniority,
+        tech,
+        category
+      });
+    });
+  }
+
+  handleUserSelectInput = e => {
+    const { name, value } = e.target;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleUserCheckInput = e => {
+    const { value } = e.target;
+    console.log(e.target.checked);
+    const tech = [...this.state.tech];
+    if (!tech.includes(value)) {
+      tech.push(value);
+    } else {
+      const index = tech.indexOf(value);
+      tech.splice(index, 1);
+    }
+
+    this.setState({
+      tech
+    });
+  };
+
   render() {
+    const techEls = ['React', 'NodeJS', 'Javascript', 'VueJS'];
+    const seniorityLevels = ['Junior', 'Mid', 'Senior'];
+    const categories = ['Front end', 'Back end', 'Fullstack'];
     return (
-      <form onSubmit={this.handleFormSubmission}>
-        <label htmlFor="title">Job Title</label>
-        <input
-          type="text"
+      <form onSubmit={this.handleFormSubmission} className="py-4">
+        <InputText
           id="title"
-          placeholder="Job Title"
-          name="title"
           value={this.state.title}
-          onChange={this.handleUserInput}
+          handleChange={this.handleUserInput}
+          label="Job Title"
         />
-        <label htmlFor="category">Category</label>
-        <input
-          type="text"
-          id="category"
-          placeholder="Category"
-          name="category"
-          value={this.state.category}
-          onChange={this.handleUserInput}
-        />
-        <label htmlFor="location">Job Location</label>
-        <input
-          type="text"
+
+        <div className="select-input">
+          <p className="text-left">Category</p>
+          <div className="d-flex justify-content-start ">
+            {categories.map(item => (
+              <InputCheckbox
+                type="radio"
+                id={item.toLowerCase()}
+                value={item}
+                name="category"
+                handleChange={this.handleUserSelectInput}
+                key={item}
+                color={(this.state.category === item && '#5f49e7') || '#cacaca'}
+              />
+            ))}
+          </div>
+        </div>
+        <InputText
           id="location"
-          placeholder="Job Location"
-          name="location"
           value={this.state.location}
-          onChange={this.handleUserInput}
+          handleChange={this.handleUserInput}
+          label="Job Location"
         />
-        <label htmlFor="description">Job Description</label>
-        <input
-          type="text"
+        <InputText
           id="description"
-          placeholder="Job Description"
-          name="description"
           value={this.state.description}
-          onChange={this.handleUserInput}
+          handleChange={this.handleUserInput}
+          label="Job Description"
         />
-        <label htmlFor="tasks">Tasks</label>
-        <input
-          type="text"
+        <InputText
           id="tasks"
-          placeholder="Tasks"
-          name="tasks"
           value={this.state.tasks}
-          onChange={this.handleUserInput}
+          handleChange={this.handleUserInput}
+          label="Tasks"
         />
-        <label htmlFor="requirements">Requirements</label>
-        <input
-          type="text"
+        <InputText
           id="requirements"
-          placeholder="requirements"
-          name="requirements"
           value={this.state.requirements}
-          onChange={this.handleUserInput}
+          handleChange={this.handleUserInput}
+          label="Requirements"
         />
-        <label htmlFor="seniority">Seniority</label>
-        <input
-          type="text"
-          id="seniority"
-          placeholder="Seniority"
-          name="seniority"
-          value={this.state.seniority}
-          onChange={this.handleUserInput}
-        />
-        <label htmlFor="tech">Tech</label>
-        <input
-          type="text"
-          id="tech"
-          placeholder="Tech"
-          name="tech"
-          value={this.state.tech}
-          onChange={this.handleUserInput}
-        />
-        <button>Create</button>
+
+        <div className="select-input">
+          <p className="text-left">Seniority</p>
+          <div className="d-flex justify-content-start">
+            {seniorityLevels.map(item => (
+              <InputCheckbox
+                type="radio"
+                id={item.toLowerCase()}
+                name="seniority"
+                value={item}
+                handleChange={this.handleUserSelectInput}
+                color={this.state.seniority === item && '#5f49e7'}
+                key={item}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="select-input">
+          <p className="text-left">Tech</p>
+          <div className="d-flex d-flex justify-content-start flex-wrap">
+            {techEls.map(item => (
+              <InputCheckbox
+                type="checkbox"
+                name="tech"
+                id={item.toLowerCase()}
+                value={item}
+                handleChange={this.handleUserCheckInput}
+                color={this.state.tech.includes(item) && '#5f49e7'}
+                key={item}
+              />
+            ))}
+          </div>
+        </div>
+        <button className="btn ">Create</button>
       </form>
     );
   }
