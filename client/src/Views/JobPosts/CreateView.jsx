@@ -89,7 +89,7 @@ class Creation extends Component {
   render() {
     const techEls = ['React', 'NodeJS', 'Javascript', 'VueJS'];
     const seniorityLevels = ['Junior', 'Mid', 'Senior'];
-    const categories = ['Front end', 'Back end', 'Fullstack'];
+    const categories = ['Frontend', 'Backend', 'Fullstack'];
     return (
       <form onSubmit={this.handleFormSubmission} className="py-4">
         <InputText
