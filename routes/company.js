@@ -53,7 +53,7 @@ companyRouter.get('/:id', async (req, res, next) => {
 });
 
 companyRouter.patch('/:id', (req, res, next) => {
-  const id = req.user._id;
+  const id = req.params.id;
   const {
     companyName,
     email,
