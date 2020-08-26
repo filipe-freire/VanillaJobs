@@ -70,24 +70,26 @@ class Creation extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmission}>
+      <form onSubmit={this.handleFormSubmission} className="py-4">
         <div>
-          <label htmlFor="title">Job Title</label>
           <input
             type="text"
             id="title"
-            placeholder="Job Title"
             name="title"
             value={this.state.title}
             onChange={this.handleUserInput}
+            required
+            autoComplete="off"
           />
+          <label htmlFor="title">
+            <span>Job Title</span>
+          </label>
         </div>
         <div className="Select-input">
           <label htmlFor="category">Category</label>
           <input
             type=""
             id="category"
-            placeholder="Category"
             name="category"
             value={this.state.category}
             // onChange={this.handleUserSelectInput}
@@ -117,48 +119,60 @@ class Creation extends Component {
           </div>
         </div>
         <div>
-          <label htmlFor="location">Job Location</label>
           <input
             type="text"
             id="location"
-            placeholder="Job Location"
             name="location"
             value={this.state.location}
             onChange={this.handleUserInput}
+            required
+            autoComplete="off"
           />
+          <label htmlFor="location">
+            <span> Job Location</span>
+          </label>
         </div>
         <div>
-          <label htmlFor="description">Job Description</label>
           <input
             type="text"
             id="description"
-            placeholder="Job Description"
+            required
+            autoComplete="off"
             name="description"
             value={this.state.description}
             onChange={this.handleUserInput}
-          />{' '}
+          />
+          <label htmlFor="description">
+            <span>Job Description</span>
+          </label>
         </div>
         <div>
-          <label htmlFor="tasks">Tasks</label>
           <input
             type="text"
             id="tasks"
-            placeholder="Tasks"
             name="tasks"
             value={this.state.tasks}
             onChange={this.handleUserInput}
+            required
+            autoComplete="off"
           />
+          <label htmlFor="tasks">
+            <span>Tasks</span>
+          </label>
         </div>
         <div>
-          <label htmlFor="requirements">Requirements</label>
           <input
             type="text"
             id="requirements"
-            placeholder="requirements"
             name="requirements"
             value={this.state.requirements}
             onChange={this.handleUserInput}
+            required
+            autoComplete="off"
           />
+          <label htmlFor="requirements">
+            <span>Requirements</span>
+          </label>
         </div>
         <div>
           <label htmlFor="seniority">Seniority</label>
@@ -172,15 +186,18 @@ class Creation extends Component {
           />
         </div>
         <div>
-          <label htmlFor="tech">Tech</label>
           <input
             type="text"
             id="tech"
-            placeholder="Tech"
             name="tech"
             value={this.state.tech}
             onChange={this.handleUserInput}
+            required
+            autoComplete="off"
           />
+          <label htmlFor="tech">
+            <span>Tech</span>
+          </label>
         </div>
         <button className="btn ">Create</button>
       </form>

@@ -1,26 +1,71 @@
-$input-border: 1px solid #73abff;
+$input-border-valid: 3px solid #73abff;
+$input-border-blank: 1px solid #cacaca;
 
 form {
   display: flex;
   flex-direction: column;
-  margin: 3rem 0;
   width: 90%;
-  margin: 2rem auto;
+  margin: 0 auto;
+  overflow: hidden;
 
   > div {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 1.25rem 0;
+    width: 100%;
 
     label {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      left: 0;
       margin: 0;
       text-align: start;
       font-size: 1.2rem;
       font-weight: 500;
+      pointer-events: none;
+      border-bottom: $input-border-blank;
+
+      span {
+        position: absolute;
+        bottom: 3px;
+        left: 0;
+        transition: all 0.5s ease;
+      }
     }
+
+    label::after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-bottom: $input-border-valid;
+      left: 0;
+      bottom: -1px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
     input {
+      width: 100%;
+      height: 100%;
+      padding-top: 1.5rem;
       border: none;
-      border-bottom: $input-border;
+      outline: none;
+      padding-bottom: 3px;
+    }
+
+    input:focus + label > span,
+    input:valid + label > span {
+      transform: translateY(-90%);
+    }
+
+    input:focus + label::after,
+    input:valid + label::after {
+      transform: translateX(0%);
     }
 
     .buttons-group {
