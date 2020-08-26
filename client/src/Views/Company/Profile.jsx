@@ -73,7 +73,12 @@ class Profile extends Component {
             <h1>Company Name: {this.state.user.companyName} </h1>
             <h3>Location: {this.state.user.location}</h3>
             <h5>Founded: {this.state.user.foundedDate}</h5>
-            <h5>Website: {this.state.user.websiteUrl}</h5>
+            <h5>
+              Website:{' '}
+              <a href={`${this.state.user.websiteUrl}`} target="_blank" rel="noopener noreferrer">
+                {this.state.user.websiteUrl}
+              </a>
+            </h5>
             <h5>Size: {this.state.user.sizeInEmployees} employees</h5>
             <h3>Summary</h3>
             <p>{this.state.user.summary}</p>
