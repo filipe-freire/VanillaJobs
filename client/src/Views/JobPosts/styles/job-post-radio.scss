@@ -2,7 +2,8 @@ $input-border-blank: 2px solid #cacaca;
 $color-blank: #cacaca;
 form {
   > .select-input {
-    input[type='radio'] {
+    input[type='radio'],
+    input[type='checkbox'] {
       display: none;
     }
 

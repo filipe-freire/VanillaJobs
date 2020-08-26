@@ -68,6 +68,22 @@ class Creation extends Component {
     });
   };
 
+  handleUserCheckInput = e => {
+    const { value, checked } = e.target;
+    const tech = [...this.state.tech];
+    console.dir(e.target.checked);
+    if (checked) {
+      tech.push(value);
+    } else {
+      const index = tech.indexOf(value);
+      tech.splice(index, 1);
+    }
+
+    this.setState({
+      tech
+    });
+  };
+
   render() {
     return (
       <form onSubmit={this.handleFormSubmission} className="py-4">
@@ -216,21 +232,46 @@ class Creation extends Component {
             </label>
           </div>
         </div>
-        <div>
-          <input
-            type="text"
-            id="tech"
-            name="tech"
-            value={this.state.tech}
-            onChange={this.handleUserInput}
-            required
-            autoComplete="off"
-            className="input-text"
-          />
-          <label htmlFor="tech" className="label-input-text">
-            <span>Tech</span>
-          </label>
+        {/* Working on this */}
+        <div className="select-input">
+          <p className="text-left">Tech</p>
+          <div className="d-flex d-flex justify-content-around">
+            <input
+              type="checkbox"
+              id="react"
+              name="tech"
+              value="React"
+              onChange={this.handleUserCheckInput}
+              required
+            />
+            <label htmlFor="react" className="py-1 px-3">
+              React
+            </label>
+            <input
+              type="checkbox"
+              id="nodeJS"
+              name="tech"
+              value="NodeJS"
+              onChange={this.handleUserCheckInput}
+              required
+            />
+            <label htmlFor="nodeJS" className="py-1 px-3">
+              NodeJS
+            </label>
+            <input
+              type="checkbox"
+              id="javascript"
+              name="tech"
+              value="Javascript"
+              onChange={this.handleUserCheckInput}
+              required
+            />
+            <label htmlFor="javascript" className="py-1 px-3">
+              Javascript
+            </label>
+          </div>
         </div>
+        {/* Wnf od current working stage */}
         <button className="btn ">Create</button>
       </form>
     );
