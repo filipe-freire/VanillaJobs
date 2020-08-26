@@ -34,6 +34,7 @@ class Profile extends Component {
   }
 
   render() {
+    console.log(this.state.jobPosts[0]);
     return (
       <div>
         {(this.state.user && (
@@ -56,11 +57,14 @@ class Profile extends Component {
             {(this.state.jobPosts[0] && (
               <ul>
                 {this.state.jobPosts.map(post => (
-                  <li key={post._id}>
-                    <Link to={`/jobpost/${post._id}`}>
-                      <h2>{post.title}</h2>
-                    </Link>
-                  </li>
+                  <>
+                    <li key={post._id}>
+                      <Link to={`/jobpost/${post._id}`}>
+                        <h2>{post.title}</h2>
+                      </Link>
+                    </li>
+                    <p>Number of Applicants:</p>
+                  </>
                 ))}
               </ul>
             )) || <p>No Job Posts Available </p>}
