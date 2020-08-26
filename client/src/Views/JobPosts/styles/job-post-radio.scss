@@ -1,10 +1,17 @@
 $input-border-blank: 2px solid #cacaca;
 $color-blank: #cacaca;
+$color-selected: #5f49e7;
+
 form {
   > .select-input {
     input[type='radio'],
     input[type='checkbox'] {
       display: none;
+    }
+
+    input:checked + label {
+      color: $color-selected;
+      border-color: $color-selected;
     }
 
     p {
