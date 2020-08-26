@@ -85,22 +85,34 @@ class FormView extends Component {
           label="Your location"
         />
 
-        <InputText
+        {/* <InputText
           id="motivation"
           value={this.state.motivation}
           handleChange={this.handleInputChange}
           label="Motivation letter"
-        />
+        /> */}
 
-        {/* <label htmlFor="input-motivation">Why Should You Get This Job?</label>
-          <input
+        <label htmlFor="input-motivation" className="textarea-label-formView">
+          Why Should You Get This Job?
+        </label>
+
+        <div>
+          <textarea
+            className="input-text"
             id="input-motivation"
             type="text"
             name="motivation"
             placeholder="I have 5y+ of experience working with React, JavaScript and Node.js"
             value={this.state.motivation}
             onChange={this.handleInputChange}
-          /> */}
+            style={{
+              paddingTop: '0',
+              border: '1px solid rgb(161, 161, 161)',
+              marginTop: '-15px',
+              marginBottom: '-20px'
+            }}
+          />
+        </div>
 
         {/* ------------ Resumé upload ------------ */}
         {/* ------------ Photo upload ------------ */}
