@@ -136,7 +136,7 @@ class ProfileEditView extends Component {
                 id="input-websiteUrl"
                 type="text"
                 name="websiteUrl"
-                placeholder="company.example"
+                placeholder="https://www.company.example"
                 value={user.websiteUrl || ''}
                 onChange={this.handleCompanyInfoChange}
               />

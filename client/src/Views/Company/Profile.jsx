@@ -10,18 +10,31 @@ class Profile extends Component {
     this.state = {
       user: null,
       photo: null,
-      jobPosts: []
+      jobPosts: [],
+      applicants: {}
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = this.props.match.params.id;
 
     loadAllByCreatorId(id)
-      .then(data => {
+      .then(async data => {
         const { jobPosts } = data;
 
-        this.setState({ jobPosts });
+        const applicants = await jobPosts.reduce(async (acc, post) => {
+          const numOfApp = await this.numOfApplicants(post._id);
+          const newItem = {
+            ...acc,
+            [post._id]: numOfApp.applicants.length
+          };
+          console.log(newItem);
+          this.setState({ [post._id]: numOfApp.applicants.length });
+          acc = newItem;
+          return acc;
+        }, {});
+
+        this.setState({ jobPosts, applicants });
       })
       .catch(error => console.log(error));
 
@@ -34,13 +47,17 @@ class Profile extends Component {
       .catch(error => console.log(error));
   }
 
-  numOfApplicants(id) {
-    loadNumOfApplicants(id)
-      .then(data => {
-        return data.applicants.length;
+  numOfApplicants = async id => {
+    return await loadNumOfApplicants(id);
+  };
+  /*    .then(data => {
+        console.log(data);
+        this.setState({ applicants: { [id]: data.applicants.length } });
+        //return data.applicants.length;
       })
       .catch(error => console.log(error));
   }
+  */
 
   render() {
     //console.log(this.state.jobPosts[0]);
@@ -56,7 +73,12 @@ class Profile extends Component {
             <h1>Company Name: {this.state.user.companyName} </h1>
             <h3>Location: {this.state.user.location}</h3>
             <h5>Founded: {this.state.user.foundedDate}</h5>
-            <h5>Website: {this.state.user.websiteUrl}</h5>
+            <h5>
+              Website:{' '}
+              <a href={`${this.state.user.websiteUrl}`} target="_blank" rel="noopener noreferrer">
+                {this.state.user.websiteUrl}
+              </a>
+            </h5>
             <h5>Size: {this.state.user.sizeInEmployees} employees</h5>
             <h3>Summary</h3>
             <p>{this.state.user.summary}</p>
@@ -69,7 +91,10 @@ class Profile extends Component {
                     <Link to={`/jobpost/${post._id}`}>
                       <h2>{post.title}</h2>
                     </Link>
-                    <p>Number of Applicants: {this.numOfApplicants(post._id)} </p>
+                    <Link to={`/jobApplications/${post._id}`}>
+                      Number of Applicants: {this.state[post._id]}
+                      {/*Number of Applicants: {this.numOfApplicants(post._id)}{' '}*/}
+                    </Link>
                   </li>
                 ))}
               </ul>
