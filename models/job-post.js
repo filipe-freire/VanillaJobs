@@ -75,7 +75,7 @@ const schema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['Front end', 'Back end', 'Fullstack']
+    enum: ['Frontend', 'Backend', 'Fullstack']
   }
 });
 

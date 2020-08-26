@@ -33,21 +33,11 @@ class Homepage extends Component {
         const { jobPosts } = data;
         const filteredArray = jobPosts.filter(
           value =>
-            value.category
-              .toLowerCase()
-              .includes(this.state.contentSearch.toLowerCase()) ||
-            value.title
-              .toLowerCase()
-              .includes(this.state.contentSearch.toLowerCase()) ||
-            value.location
-              .toLowerCase()
-              .includes(this.state.contentSearch.toLowerCase()) ||
-            value.seniority
-              .toLowerCase()
-              .includes(this.state.contentSearch.toLowerCase()) ||
-            value.creator.companyName
-              .toLowerCase()
-              .includes(this.state.contentSearch.toLowerCase())
+            value.category.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
+            value.title.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
+            value.location.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
+            value.seniority.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
+            value.creator.companyName.toLowerCase().includes(this.state.contentSearch.toLowerCase())
         );
 
         this.setState({
@@ -70,7 +60,7 @@ class Homepage extends Component {
         <div className="Homepage-header pt-3">
           <h1 className="pb-3">Designed to make your job easier</h1>
         </div>
-        <form className="d-flex flex-row overflow-hidden py-2">
+        <form className="d-flex flex-row overflow-hidden py-2 col-lg-6">
           <img
             src="https://res.cloudinary.com/dtty9rclm/image/upload/v1598377654/Project%203%20images/procurar_1_aml9yp.png"
             alt="search-img"
@@ -80,7 +70,7 @@ class Homepage extends Component {
             type="text"
             value={this.state.contentSearch}
             onChange={this.handleSearchInput}
-            className="col-11 p-0 ml-4 "
+            className="col-sm-11 col-lg-10 p-0 ml-4 "
             placeholder="Search"
             name="contentSearch"
           />
@@ -89,31 +79,95 @@ class Homepage extends Component {
         <div className="Job-offers-container my-5">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
-              <h3 className="text-left m-0 ">Front end</h3>
+              <h3 className="text-left m-0 ">Frontend</h3>
             </div>
             <Link className="m-0" to="#">
               More →
             </Link>
           </div>
           {this.state.loaded &&
-            this.state.jobPosts.map(value => {
-              return (
-                <Link
-                  className="Job-post d-flex p-2 my-2"
-                  key={value._id}
-                  to={`/jobpost/${value._id}`}
-                >
-                  <img src={value.creator.logo} alt="company logo" />
-                  <div className="d-flex flex-column justify-content-between align-items-start ml-4">
-                    <h5 className="m-0">{value.title}</h5>
-                    <p className="m-0">{value.creator.companyName}</p>
-                    <p className="m-0">
-                      {value.seniority} | {value.location}
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
+            this.state.jobPosts
+              .filter(job => job.category === 'Frontend')
+              .map(value => {
+                return (
+                  <Link
+                    className="Job-post d-flex p-2 my-2"
+                    key={value._id}
+                    to={`/jobpost/${value._id}`}
+                  >
+                    <img src={value.creator.logo} alt="company logo" />
+                    <div className="d-flex flex-column justify-content-between align-items-start ml-4">
+                      <h5 className="m-0">{value.title}</h5>
+                      <p className="m-0">{value.creator.companyName}</p>
+                      <p className="m-0">
+                        {value.seniority} | {value.location}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+        </div>
+        <div className="Job-offers-container mb-5">
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 className="text-left m-0 ">Backend</h3>
+            </div>
+            <Link className="m-0" to="#">
+              More →
+            </Link>
+          </div>
+          {this.state.loaded &&
+            this.state.jobPosts
+              .filter(job => job.category === 'Backend')
+              .map(value => {
+                return (
+                  <Link
+                    className="Job-post d-flex p-2 my-2"
+                    key={value._id}
+                    to={`/jobpost/${value._id}`}
+                  >
+                    <img src={value.creator.logo} alt="company logo" />
+                    <div className="d-flex flex-column justify-content-between align-items-start ml-4">
+                      <h5 className="m-0">{value.title}</h5>
+                      <p className="m-0">{value.creator.companyName}</p>
+                      <p className="m-0">
+                        {value.seniority} | {value.location}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+        </div>
+        <div className="Job-offers-container mb-5">
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 className="text-left m-0 ">Fullstack</h3>
+            </div>
+            <Link className="m-0" to="#">
+              More →
+            </Link>
+          </div>
+          {this.state.loaded &&
+            this.state.jobPosts
+              .filter(job => job.category === 'Fullstack')
+              .map(value => {
+                return (
+                  <Link
+                    className="Job-post d-flex p-2 my-2"
+                    key={value._id}
+                    to={`/jobpost/${value._id}`}
+                  >
+                    <img src={value.creator.logo} alt="company logo" />
+                    <div className="d-flex flex-column justify-content-between align-items-start ml-4">
+                      <h5 className="m-0">{value.title}</h5>
+                      <p className="m-0">{value.creator.companyName}</p>
+                      <p className="m-0">
+                        {value.seniority} | {value.location}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
         </div>
       </div>
     );
