@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
 import Button from './../../components/Button';
+import InputText from './../../components/InputText';
 
 import { signIn } from './../../services/authentication';
+
+import './authentication.scss';
 
 class SignInView extends Component {
   constructor() {
@@ -39,27 +42,24 @@ class SignInView extends Component {
 
   render() {
     return (
-      <div>
+      <div className="authentication-container py-5 my-5 d-flex flex-column justify-content-center mx-auto">
         <h3>Sign-in</h3>
-        <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor="input-email">Email</label>
-          <input
-            id="input-email"
-            type="text"
-            placeholder="Email"
-            name="email"
+        <form onSubmit={this.handleFormSubmission} className="mx-auto ">
+          <InputText
+            id="email"
+            type="email"
             value={this.state.email}
-            onChange={this.handleInputChange}
+            handleChange={this.handleInputChange}
+            label="Email"
           />
-          <label htmlFor="input-password">Password</label>
-          <input
-            id="input-password"
+          <InputText
+            id="password"
             type="password"
-            placeholder="Password"
-            name="password"
             value={this.state.password}
-            onChange={this.handleInputChange}
+            handleChange={this.handleInputChange}
+            label="Password"
           />
+
           <Button name="Sign in" />
         </form>
       </div>

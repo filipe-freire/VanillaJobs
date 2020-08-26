@@ -1,0 +1,12 @@
+$color-highlighted: #5f49e7;
+.authentication-container {
+  width: 90%;
+
+  h3 {
+    color: $color-highlighted;
+  }
+
+  form {
+    width: 90%;
+  }
+}

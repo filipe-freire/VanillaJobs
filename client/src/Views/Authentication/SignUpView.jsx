@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { signUp } from '../../services/authentication';
 
 import Button from './../../components/Button';
+import InputText from './../../components/InputText';
+
+import './authentication.scss';
 
 class AuthSignUpView extends Component {
   constructor() {
@@ -37,39 +40,31 @@ class AuthSignUpView extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor="input-companyName">Company Name</label>
-          <input
-            id="input-companyName"
-            type="text"
-            name="companyName"
-            placeholder="Company Name"
-            value={this.state.name}
-            onChange={this.handleInputChange}
+      <div className="authentication-container py-5 my-5 d-flex flex-column justify-content-center mx-auto">
+        <h3>Sign-in</h3>
+        <form onSubmit={this.handleFormSubmission} className="mx-auto ">
+          <InputText
+            id="companyName"
+            value={this.state.companyName}
+            handleChange={this.handleInputChange}
+            label="Name"
           />
-
-          <label htmlFor="input-email">Email</label>
-          <input
-            id="input-email"
+          <InputText
+            id="email"
             type="email"
-            name="email"
-            placeholder="Email"
             value={this.state.email}
-            onChange={this.handleInputChange}
+            handleChange={this.handleInputChange}
+            label="Email"
           />
-
-          <label htmlFor="input-password">Password</label>
-          <input
-            id="input-password"
+          <InputText
+            id="password"
             type="password"
-            name="password"
-            placeholder="Password"
             value={this.state.password}
-            onChange={this.handleInputChange}
+            handleChange={this.handleInputChange}
+            label="Password"
           />
 
-          <Button name="Sign up" />
+          <Button name="Sign in" />
         </form>
       </div>
     );
