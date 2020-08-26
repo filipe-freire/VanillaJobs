@@ -16,7 +16,6 @@ class ProfileEditView extends Component {
     loadUser(id)
       .then(data => {
         const user = data.user;
-        console.log(user.logo);
         this.setState({
           loaded: true,
           user

@@ -8,7 +8,7 @@ class Profile extends Component {
     super();
     this.state = {
       user: null,
-      jobPosts: null
+      jobPosts: []
     };
   }
 
@@ -52,16 +52,18 @@ class Profile extends Component {
             <p>{this.state.user.summary}</p>
             <h2>Job Posts</h2>
             {/* map through JSON with all the jobPosts created by the user */}
+            {(this.state.jobPosts[0] && (
+              <ul>
+                {this.state.jobPosts.map(post => (
+                  <li key={post._id}>
+                    <Link to={`/jobpost/${post._id}`}>
+                      <h2>{post.title}</h2>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )) || <p>No Job Posts Available </p>}
 
-            <ul>
-              {this.state.jobPosts.map(post => (
-                <li key={post._id}>
-                  <Link to={`/jobpost/${post._id}`}>
-                    <h2>{post.title}</h2>
-                  </Link>
-                </li>
-              ))}
-            </ul>
             <Link to={`/profile/${this.props.match.params.id}/edit`}>Edit Profile</Link>
           </>
         )) || <h2>Loading...</h2>}

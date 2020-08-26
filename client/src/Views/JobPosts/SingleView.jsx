@@ -47,27 +47,33 @@ class SingleView extends Component {
     console.log(post);
     return (
       <div>
-        <h1>Single view</h1>
+        {/* <h1>Single view</h1> */}
         {this.state.loaded && (
           <>
-            <h4>Title: {post.title}</h4>
+            <h2>{post.title}</h2>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Location:</span> {post.location}
+              <span style={{ fontWeight: 'bold' }}>Location: </span>
+              {post.location}
             </p>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Category:</span> {post.category}
+              <span style={{ fontWeight: 'bold' }}>Category: </span>
+              {post.category}
             </p>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Seniority Level:</span> {post.seniority}
+              <span style={{ fontWeight: 'bold' }}>Seniority Level: </span>
+              {post.seniority}
             </p>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Tasks:</span> {post.tasks[0]}
+              <span style={{ fontWeight: 'bold' }}>Tasks: </span>
+              {post.tasks[0]}
             </p>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Requirements:</span> {post.requirements[0]}
+              <span style={{ fontWeight: 'bold' }}>Requirements: </span>
+              {post.requirements[0]}
             </p>
             <p>
-              <span style={{ fontWeight: 'bold' }}>Tech Used:</span> {post.tech}
+              <span style={{ fontWeight: 'bold' }}>Tech Used: </span>
+              {post.tech}
             </p>
             {this.state.user && (
               <form onSubmit={this.handlePostDeletion}>
