@@ -3,6 +3,7 @@ $color-highlighted: #5f49e7;
 $text-color-dark: #686868;
 $tech-light: #73abff;
 $section-border: 1px solid rgba(115, 171, 255, 0.23);
+$danger: #ee4266;
 
 .jobpost-container {
   width: 85%;
@@ -27,6 +28,17 @@ $section-border: 1px solid rgba(115, 171, 255, 0.23);
 
       font-size: 1rem;
       line-height: 150%;
+    }
+
+    > div {
+      form {
+        button {
+          width: 100%;
+          color: $danger !important;
+          border: 2px $danger solid;
+          background-color: #fff !important;
+        }
+      }
     }
   }
 

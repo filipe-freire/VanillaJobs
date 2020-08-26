@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { loadJob, deleteJob } from './../../services/jobPosts';
 import { loadMe } from '../../services/authentication';
 
+import Button from './../../components/Button';
+
 import './styles/job-post-single.scss';
 
 class SingleView extends Component {
@@ -83,7 +85,7 @@ class SingleView extends Component {
               <div className="col-5 d-flex justify-content-center align-items-center">
                 {this.state.user._id === this.state.post.creator._id && (
                   <form onSubmit={this.handlePostDeletion}>
-                    <button>Delete</button>
+                    <Button name="Delete" />
                   </form>
                 )}
                 {!this.state.user && (
