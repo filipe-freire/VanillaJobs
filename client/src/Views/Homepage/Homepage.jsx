@@ -86,7 +86,7 @@ class Homepage extends Component {
           />
         </form>
 
-        <div className="Job-offers-container mb-5">
+        <div className="Job-offers-container my-5">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
               <h3 className="text-left m-0 ">Front end</h3>
