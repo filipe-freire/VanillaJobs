@@ -9,11 +9,6 @@ form {
       display: none;
     }
 
-    input:checked + label {
-      color: $color-selected;
-      border-color: $color-selected;
-    }
-
     p {
       font-size: 1.2rem;
       font-weight: 500;

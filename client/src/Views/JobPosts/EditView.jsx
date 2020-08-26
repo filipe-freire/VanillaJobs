@@ -122,9 +122,13 @@ class EditView extends Component {
     });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tech !== this.state.tech) {
+    }
+  }
+
   handleUserCheckInput = e => {
     const { value } = e.target;
-    console.log(e.target.checked);
     const tech = [...this.state.tech];
     if (!tech.includes(value)) {
       tech.push(value);

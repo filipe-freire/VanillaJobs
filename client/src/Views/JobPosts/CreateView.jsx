@@ -109,6 +109,7 @@ class Creation extends Component {
                 value={item}
                 name="category"
                 handleChange={this.handleUserSelectInput}
+                color={(this.state.category === item && '#5f49e7') || '#cacaca'}
                 key={item}
               />
             ))}
@@ -149,6 +150,7 @@ class Creation extends Component {
                 name="seniority"
                 value={item}
                 handleChange={this.handleUserSelectInput}
+                color={this.state.seniority === item && '#5f49e7'}
                 key={item}
               />
             ))}
@@ -166,6 +168,7 @@ class Creation extends Component {
                 value={item}
                 handleChange={this.handleUserCheckInput}
                 key={item}
+                color={this.state.tech.includes(item) && '#5f49e7'}
               />
             ))}
           </div>
