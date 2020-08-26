@@ -5,7 +5,7 @@ const InputText = props => {
   return (
     <div>
       <input
-        type="text"
+        type={props.type || 'text'}
         id={props.id}
         name={props.id}
         value={props.value}

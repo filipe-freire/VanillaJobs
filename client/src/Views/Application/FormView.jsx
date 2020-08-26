@@ -72,6 +72,7 @@ class FormView extends Component {
 
         <InputText
           id="candidateEmail"
+          type="email"
           value={this.state.candidateEmail}
           handleChange={this.handleInputChange}
           label="Email"
