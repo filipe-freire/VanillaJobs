@@ -1,0 +1,53 @@
+$color-blank: #919191;
+$color-highlighted: #5f49e7;
+$text-color-dark: #686868;
+$tech-light: #73abff;
+$section-border: 1px solid rgba(115, 171, 255, 0.23);
+
+.jobpost-container {
+  width: 85%;
+
+  span {
+    font-weight: 500;
+    color: $color-blank;
+  }
+
+  .header-container {
+    background-image: url('https://res.cloudinary.com/dtty9rclm/image/upload/v1598455071/Project%203%20images/Rectangle_6_qi4aiv.svg');
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+
+    a {
+      color: $color-highlighted;
+      font-weight: 500;
+    }
+
+    .apply-link {
+      border: 2px solid $color-highlighted;
+
+      font-size: 1rem;
+      line-height: 150%;
+    }
+  }
+
+  > div {
+    border-top: $section-border;
+    padding-top: 1rem;
+
+    h3 {
+      color: $color-highlighted;
+    }
+
+    p {
+      color: $text-color-dark;
+    }
+
+    .tech-items {
+      p {
+        font-weight: 500;
+        border: 2px solid $tech-light;
+        color: $tech-light;
+      }
+    }
+  }
+}
