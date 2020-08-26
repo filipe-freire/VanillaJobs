@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loadUser } from './../../services/company';
 import { loadAllByCreatorId } from '../../services/jobPosts';
+import { loadNumOfApplicants } from '../../services/application';
 
 class Profile extends Component {
   constructor() {
@@ -33,8 +34,16 @@ class Profile extends Component {
       .catch(error => console.log(error));
   }
 
+  numOfApplicants(id) {
+    loadNumOfApplicants(id)
+      .then(data => {
+        return data.applicants.length;
+      })
+      .catch(error => console.log(error));
+  }
+
   render() {
-    console.log(this.state.jobPosts[0]);
+    //console.log(this.state.jobPosts[0]);
     return (
       <div>
         {(this.state.user && (
@@ -46,10 +55,9 @@ class Profile extends Component {
             />
             <h1>Company Name: {this.state.user.companyName} </h1>
             <h3>Location: {this.state.user.location}</h3>
-            <h5>Founded:{this.state.user.foundedDate}</h5>
+            <h5>Founded: {this.state.user.foundedDate}</h5>
             <h5>Website: {this.state.user.websiteUrl}</h5>
             <h5>Size: {this.state.user.sizeInEmployees} employees</h5>
-
             <h3>Summary</h3>
             <p>{this.state.user.summary}</p>
             <h2>Job Posts</h2>
@@ -57,14 +65,12 @@ class Profile extends Component {
             {(this.state.jobPosts[0] && (
               <ul>
                 {this.state.jobPosts.map(post => (
-                  <>
-                    <li key={post._id}>
-                      <Link to={`/jobpost/${post._id}`}>
-                        <h2>{post.title}</h2>
-                      </Link>
-                    </li>
-                    <p>Number of Applicants:</p>
-                  </>
+                  <li key={post._id}>
+                    <Link to={`/jobpost/${post._id}`}>
+                      <h2>{post.title}</h2>
+                    </Link>
+                    <p>Number of Applicants: {this.numOfApplicants(post._id)} </p>
+                  </li>
                 ))}
               </ul>
             )) || <p>No Job Posts Available </p>}

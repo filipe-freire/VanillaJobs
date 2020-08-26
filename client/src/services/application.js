@@ -8,3 +8,5 @@ const api = axios.create({
 // endpoint inside the jobApplication route
 export const submitApplication = body =>
   api.post('/submitApplication', body).then(response => response.data);
+
+export const loadNumOfApplicants = id => api.get(`/${id}`).then(response => response.data);
