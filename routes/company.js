@@ -5,6 +5,14 @@ const companyRouter = new Router();
 
 const User = require('../models/user');
 
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const multerStorageCloudinary = require('multer-storage-cloudinary');
+const storage = new multerStorageCloudinary.CloudinaryStorage({
+  cloudinary: cloudinary.v2
+});
+const upload = multer({ storage });
+
 companyRouter.get('/me', (req, res) => {
   const user = req.user;
   res.json({ user });
@@ -29,7 +37,7 @@ companyRouter.get('/:id', async (req, res, next) => {
 
   try {
     const user = await User.findById(id);
-    console.log('this is the user', user);
+    // console.log('this is the user', user);
     if (user) {
       res.json({
         user: {
@@ -52,12 +60,16 @@ companyRouter.get('/:id', async (req, res, next) => {
   }
 });
 
-companyRouter.patch('/:id', (req, res, next) => {
+companyRouter.patch('/:id', upload.single('logo'), (req, res, next) => {
   const id = req.params.id;
+  let url;
+  if (req.file) {
+    url = req.file.path;
+  }
+
   const {
     companyName,
     email,
-    logo,
     location,
     foundedDate,
     websiteUrl,
@@ -65,22 +77,31 @@ companyRouter.patch('/:id', (req, res, next) => {
     summary
   } = req.body;
 
-  console.log(req.body);
-
-  User.findOneAndUpdate(
-    { _id: id },
-    {
+  let updatedObject;
+  if (url) {
+    updatedObject = {
       companyName,
       email,
-      logo,
+      logo: url,
       location,
       foundedDate,
       websiteUrl,
       sizeInEmployees,
       summary
-    },
-    { new: true }
-  )
+    };
+  } else {
+    updatedObject = {
+      companyName,
+      email,
+      location,
+      foundedDate,
+      websiteUrl,
+      sizeInEmployees,
+      summary
+    };
+  }
+
+  User.findOneAndUpdate({ _id: id }, updatedObject, { new: true })
     .then(post => {
       res.json({ post });
     })

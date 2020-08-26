@@ -8,6 +8,7 @@ class Profile extends Component {
     super();
     this.state = {
       user: null,
+      photo: null,
       jobPosts: []
     };
   }
