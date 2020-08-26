@@ -173,7 +173,7 @@ class Creation extends Component {
             ))}
           </div>
         </div>
-        <button className="btn ">Create</button>
+        <button className="btn">Create</button>
       </form>
     );
   }
