@@ -50,7 +50,7 @@ class ProfileEditView extends Component {
       summary
     };
     editUser(id, body)
-      .then(data => {
+      .then(() => {
         this.props.history.push(`/profile/${id}`);
       })
       .catch(error => {

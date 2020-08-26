@@ -9,7 +9,7 @@ class SingleView extends Component {
     this.state = {
       loaded: false,
       post: null,
-      user: null
+      user: ''
     };
   }
 
@@ -29,8 +29,9 @@ class SingleView extends Component {
 
     loadMe().then(data => {
       const { user } = data;
-
-      this.setState({ user });
+      if (user === null) {
+        this.setState({ user: '' });
+      } else this.setState({ user });
     });
   }
 
@@ -44,7 +45,9 @@ class SingleView extends Component {
 
   render() {
     const post = this.state.post;
-    console.log(post);
+    //console.log(post);
+    //console.log(this.props);
+    //console.log(this.state.user._id);
     return (
       <div>
         {/* <h1>Single view</h1> */}
@@ -75,7 +78,7 @@ class SingleView extends Component {
               <span style={{ fontWeight: 'bold' }}>Tech Used: </span>
               {post.tech}
             </p>
-            {this.state.user && (
+            {this.state.user._id === this.state.post.creator._id && (
               <form onSubmit={this.handlePostDeletion}>
                 <button>Delete</button>
               </form>
