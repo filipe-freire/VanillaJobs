@@ -32,7 +32,8 @@ class Navbar extends Component {
           </Link>
           <button
             className={
-              (this.state.menuToggled && 'hamburger hamburger--squeeze is-active') ||
+              (this.state.menuToggled &&
+                'hamburger hamburger--squeeze is-active') ||
               'hamburger hamburger--squeeze'
             }
             type="button"
@@ -43,23 +44,28 @@ class Navbar extends Component {
             </span>
           </button>
         </nav>
-        {this.state.menuToggled && <div className="menu-layer-dar" onClick={this.toggleMenu}></div>}
+        {this.state.menuToggled && (
+          <div className="menu-layer-dar" onClick={this.toggleMenu}></div>
+        )}
         {this.state.menuToggled && (
           <div className="menu">
             <Link to="/" onClick={this.toggleMenu}>
               Home
             </Link>
             <Link to="/listCompanies" onClick={this.toggleMenu}>
-              All Companies
+              Companies
             </Link>
             {(this.props.user && (
               <>
-                <Link to={`/profile/${this.props.user._id}`} onClick={this.toggleMenu}>
+                <Link
+                  to={`/profile/${this.props.user._id}`}
+                  onClick={this.toggleMenu}
+                >
                   {' '}
                   {`${this.props.user.companyName}'s Profile`}{' '}
                 </Link>
                 <Link to="/jobpost/create" onClick={this.toggleMenu}>
-                  Create a Job Post
+                  Post job
                 </Link>
                 <button onClick={this.props.onSignOut}>Sign Out</button>
               </>

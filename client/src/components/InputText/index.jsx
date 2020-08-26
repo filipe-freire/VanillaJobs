@@ -11,7 +11,7 @@ const InputText = props => {
         value={props.value}
         onChange={props.handleChange}
         className="input-text"
-        autoComplete="off"
+        autoComplete="nope"
         required
       />
       <Label forName={props.id} styles="label-input-text" text={props.label} />
