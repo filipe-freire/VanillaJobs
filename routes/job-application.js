@@ -12,6 +12,17 @@ const transport = nodemailer.createTransport({
   }
 });
 
+jobApplicationRouter.get('/:id', async (req, res, next) => {
+  const jobId = req.params.id;
+  try {
+    const jobApplications = await JobApplication.find({ jobId });
+    console.log(jobApplications.length);
+    res.json({ applicants: jobApplications });
+  } catch (error) {
+    next(error);
+  }
+});
+
 jobApplicationRouter.post('/submitApplication', async (req, res, next) => {
   const {
     candidateName,

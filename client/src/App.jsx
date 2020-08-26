@@ -17,6 +17,7 @@ import SingleView from './Views/JobPosts/SingleView';
 import FormSubmittedView from './Views/Application/FormSubmittedView';
 import AllCompanies from './Views/Company/AllCompanies';
 import PublicProfile from './Views/Company/PublicProfile';
+import JobApplicationsList from './Views/Application/JobApplicationsList';
 
 import './App.scss';
 
@@ -75,26 +76,20 @@ class App extends Component {
             {this.state.user && (
               <Route
                 path="/profile/:id"
-                render={props => (
-                  <Profile {...props} user={this.state.user} exact />
-                )} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
+                render={props => <Profile {...props} user={this.state.user} exact />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
               />
             )}
 
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
 
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => (
-                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
@@ -106,6 +101,7 @@ class App extends Component {
 
             <Route path="/listCompanies" component={AllCompanies} />
 
+            <Route path="/jobApplications/:id" component={JobApplicationsList} />
             <Route path="/application/success" component={FormSubmittedView} />
             <Route path="/error" component={ErrorView} />
             <Redirect from="/" to="/error" />
