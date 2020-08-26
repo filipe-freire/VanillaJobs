@@ -35,7 +35,7 @@ class AllCompanies extends Component {
                   <img src={user.logo} className="card-img-top" alt="" />
                   <div className="card-body">
                     <h5 className="card-title">{user.companyName}</h5>
-                    <p className="card-text"> {user.summary} </p>
+                    <p className="card-text"> "{user.summary}" </p>
                     <Link className="btn btn-primary bg-info" to={`/public/profile/${user._id}`}>
                       <p>See Profile </p>
                     </Link>
