@@ -61,9 +61,7 @@ class Navbar extends Component {
                 <Link to="/jobpost/create" onClick={this.toggleMenu}>
                   Create a Job Post
                 </Link>
-                <Link to="/" onClick={this.props.onSignOut}>
-                  Sign Out
-                </Link>
+                <button onClick={this.props.onSignOut}>Sign Out</button>
               </>
             )) || (
               <>

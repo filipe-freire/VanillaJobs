@@ -34,9 +34,22 @@ nav {
   background-color: rgb(255, 255, 255);
   z-index: 10;
 
-  a {
+  a,
+  button {
     margin: 2rem 0;
     font-size: 2rem;
+  }
+
+  button {
+    color: #007bff;
+    text-decoration: none;
+    border: none;
+    background-color: inherit;
+    transition: color 0.1s;
+  }
+
+  button:hover {
+    color: #0056b3;
   }
 }
 
