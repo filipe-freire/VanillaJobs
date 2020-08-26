@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { postJob } from './../../services/jobPosts';
+import InputCheckbox from '../../components/InputCheckbox';
+import Label from '../../components/Label';
 
 import './styles/job-post-text-inputs.scss';
 import './styles/job-post-radio.scss';
@@ -235,40 +237,37 @@ class Creation extends Component {
         {/* Working on this */}
         <div className="select-input">
           <p className="text-left">Tech</p>
-          <div className="d-flex d-flex justify-content-around">
-            <input
-              type="checkbox"
+          <div className="d-flex d-flex justify-content-start flex-wrap">
+            <InputCheckbox
               id="react"
-              name="tech"
               value="React"
-              onChange={this.handleUserCheckInput}
-              required
+              handleChange={this.handleUserCheckInput}
             />
-            <label htmlFor="react" className="py-1 px-3">
-              React
-            </label>
-            <input
-              type="checkbox"
+            <Label forName="react" styles="py-1 px-3 mr-3" text="React" />
+            <InputCheckbox
               id="nodeJS"
-              name="tech"
               value="NodeJS"
-              onChange={this.handleUserCheckInput}
-              required
+              handleChange={this.handleUserCheckInput}
             />
-            <label htmlFor="nodeJS" className="py-1 px-3">
-              NodeJS
-            </label>
-            <input
-              type="checkbox"
+            <Label forName="nodeJS" styles="py-1 px-3  mr-3" text="NodeJS" />
+
+            <InputCheckbox
               id="javascript"
-              name="tech"
               value="Javascript"
-              onChange={this.handleUserCheckInput}
-              required
+              handleChange={this.handleUserCheckInput}
             />
-            <label htmlFor="javascript" className="py-1 px-3">
-              Javascript
-            </label>
+            <Label
+              forName="javascript"
+              styles="py-1 px-3  mr-3"
+              text="Javascript"
+            />
+
+            <InputCheckbox
+              id="vuejs"
+              value="VueJS"
+              handleChange={this.handleUserCheckInput}
+            />
+            <Label forName="vuejs" styles="py-1 px-3 mr-3" text="VueJS" />
           </div>
         </div>
         {/* Wnf od current working stage */}
