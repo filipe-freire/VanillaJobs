@@ -1,0 +1,22 @@
+$input-border-blank: 2px solid #cacaca;
+$color-blank: #cacaca;
+form {
+  > .select-input {
+    input[type='radio'] {
+      display: none;
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    div {
+      label {
+        border: $input-border-blank;
+        color: $color-blank;
+        font-weight: 500;
+      }
+    }
+  }
+}

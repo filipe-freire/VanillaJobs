@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { postJob } from './../../services/jobPosts';
 
-import './job-post-form.scss';
+import './styles/job-post-text-inputs.scss';
+import './styles/job-post-radio.scss';
 
 class Creation extends Component {
   constructor() {
@@ -61,10 +62,9 @@ class Creation extends Component {
   };
 
   handleUserSelectInput = e => {
-    const content = e.target.innerHTML;
-    console.log(content);
+    const { name, value } = e.target;
     this.setState({
-      category: content
+      [name]: value
     });
   };
 
@@ -80,42 +80,45 @@ class Creation extends Component {
             onChange={this.handleUserInput}
             required
             autoComplete="off"
+            className="input-text"
           />
-          <label htmlFor="title">
+          <label htmlFor="title" className="label-input-text">
             <span>Job Title</span>
           </label>
         </div>
-        <div className="Select-input">
-          <label htmlFor="category">Category</label>
-          <input
-            type=""
-            id="category"
-            name="category"
-            value={this.state.category}
-            // onChange={this.handleUserSelectInput}
-          />
-          <div className="buttons-group d-flex justify-content-between mt-1">
-            <button
-              type="button"
-              onClick={this.handleUserSelectInput}
-              className="btn"
-            >
+        <div className="select-input">
+          <p className="text-left">Category</p>
+          <div className="d-flex justify-content-around">
+            <input
+              type="radio"
+              id="frontend"
+              name="category"
+              value="Front end"
+              onChange={this.handleUserSelectInput}
+            />
+            <label htmlFor="frontend" className="py-1 px-3">
               Front end
-            </button>
-            <button
-              type="button"
-              onClick={this.handleUserSelectInput}
-              className="btn"
-            >
+            </label>
+            <input
+              type="radio"
+              id="backend"
+              name="category"
+              value="Back end"
+              onChange={this.handleUserSelectInput}
+            />
+            <label htmlFor="backend" className="py-1 px-3">
               Back end
-            </button>
-            <button
-              type="button"
-              onClick={this.handleUserSelectInput}
-              className="btn"
-            >
+            </label>
+            <input
+              type="radio"
+              id="fullstack"
+              name="category"
+              value="Fullstack"
+              onChange={this.handleUserSelectInput}
+            />
+            <label htmlFor="fullstack" className="py-1 px-3">
               Fullstack
-            </button>
+            </label>
           </div>
         </div>
         <div>
@@ -127,8 +130,9 @@ class Creation extends Component {
             onChange={this.handleUserInput}
             required
             autoComplete="off"
+            className="input-text"
           />
-          <label htmlFor="location">
+          <label htmlFor="location" className="label-input-text">
             <span> Job Location</span>
           </label>
         </div>
@@ -141,8 +145,9 @@ class Creation extends Component {
             name="description"
             value={this.state.description}
             onChange={this.handleUserInput}
+            className="input-text"
           />
-          <label htmlFor="description">
+          <label htmlFor="description" className="label-input-text">
             <span>Job Description</span>
           </label>
         </div>
@@ -155,8 +160,9 @@ class Creation extends Component {
             onChange={this.handleUserInput}
             required
             autoComplete="off"
+            className="input-text"
           />
-          <label htmlFor="tasks">
+          <label htmlFor="tasks" className="label-input-text">
             <span>Tasks</span>
           </label>
         </div>
@@ -169,21 +175,46 @@ class Creation extends Component {
             onChange={this.handleUserInput}
             required
             autoComplete="off"
+            className="input-text"
           />
-          <label htmlFor="requirements">
+          <label htmlFor="requirements" className="label-input-text">
             <span>Requirements</span>
           </label>
         </div>
-        <div>
-          <label htmlFor="seniority">Seniority</label>
-          <input
-            type="text"
-            id="seniority"
-            placeholder="Seniority"
-            name="seniority"
-            value={this.state.seniority}
-            onChange={this.handleUserInput}
-          />
+        <div className="select-input">
+          <p className="text-left">Seniority</p>
+          <div className="d-flex justify-content-around">
+            <input
+              type="radio"
+              id="junior"
+              name="seniority"
+              value="Junior"
+              onChange={this.handleUserSelectInput}
+            />
+            <label htmlFor="junior" className="py-1 px-3">
+              Junior
+            </label>
+            <input
+              type="radio"
+              id="Mid"
+              name="seniority"
+              value="Mid"
+              onChange={this.handleUserSelectInput}
+            />
+            <label htmlFor="Mid" className="py-1 px-3">
+              Mid
+            </label>
+            <input
+              type="radio"
+              id="Senior"
+              name="seniority"
+              value="Senior"
+              onChange={this.handleUserSelectInput}
+            />
+            <label htmlFor="Senior" className="py-1 px-3">
+              Senior
+            </label>
+          </div>
         </div>
         <div>
           <input
@@ -194,8 +225,9 @@ class Creation extends Component {
             onChange={this.handleUserInput}
             required
             autoComplete="off"
+            className="input-text"
           />
-          <label htmlFor="tech">
+          <label htmlFor="tech" className="label-input-text">
             <span>Tech</span>
           </label>
         </div>
