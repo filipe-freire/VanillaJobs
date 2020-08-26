@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loadAllUsers } from '../../services/company';
+import './style.scss';
 
 class AllCompanies extends Component {
   constructor() {
@@ -25,14 +26,21 @@ class AllCompanies extends Component {
   render() {
     return (
       <div>
-        <h1>Company List</h1>
+        <h1>Company Listing</h1>
         {(this.state.allUsers && (
           <ul>
             {this.state.allUsers.map(user => (
               <li key={user._id}>
-                <Link to={`/public/profile/${user._id}`}>
-                  <h1>{user.companyName} </h1>
-                </Link>
+                <div className="card">
+                  <img src={user.logo} className="card-img-top" alt="" />
+                  <div className="card-body">
+                    <h5 className="card-title">{user.companyName}</h5>
+                    <p className="card-text"> "{user.summary}" </p>
+                    <Link className="btn btn-primary bg-info" to={`/public/profile/${user._id}`}>
+                      <p>See Profile </p>
+                    </Link>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
