@@ -1,0 +1,17 @@
+$color-blank: #919191;
+$color-highlighted: #5f49e7;
+$text-color-dark: #686868;
+$tech-light: #73abff;
+$section-border: 1px solid rgba(115, 171, 255, 0.23);
+$danger: #ee4266;
+
+form {
+  button {
+    width: 50%;
+    color: #fff !important;
+    border: 2px $color-highlighted solid;
+    background-color: $color-highlighted !important;
+    border-radius: 1rem;
+    margin-top: 2rem;
+  }
+}

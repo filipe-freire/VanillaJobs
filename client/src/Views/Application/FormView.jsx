@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { submitApplication } from '../../services/application';
 
+import InputText from './../../components/InputText';
+import Button from './../../components/Button';
+
+import './../JobPosts/styles/job-post-text-inputs.scss';
+import './form-general.scss';
+
 class FormView extends Component {
   constructor() {
     super();
@@ -56,41 +62,36 @@ class FormView extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Application Form View</h1>
-        {/* ----------- !Put JobPost Component Here! -------------- */}
-        <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor="input-candidateName">Your Name</label>
-          <input
-            id="input-candidateName"
-            type="text"
-            name="candidateName"
-            placeholder="John Smith"
-            value={this.state.candidateName}
-            onChange={this.handleInputChange}
-          />
+      <form onSubmit={this.handleFormSubmission} className="py-4">
+        <InputText
+          id="candidateName"
+          value={this.state.candidateName}
+          handleChange={this.handleInputChange}
+          label="Name"
+        />
 
-          <label htmlFor="input-candidateEmail">Email</label>
-          <input
-            id="input-candidateEmail"
-            type="email"
-            name="candidateEmail"
-            placeholder="johndoe@example.com"
-            value={this.state.candidateEmail}
-            onChange={this.handleInputChange}
-          />
+        <InputText
+          id="candidateEmail"
+          value={this.state.candidateEmail}
+          handleChange={this.handleInputChange}
+          label="Email"
+        />
 
-          <label htmlFor="input-candidateLocation">Your Location</label>
-          <input
-            id="input-candidateLocation"
-            type="text"
-            name="candidateLocation"
-            placeholder="Lisbon"
-            value={this.state.candidateLocation}
-            onChange={this.handleInputChange}
-          />
+        <InputText
+          id="candidateLocation"
+          value={this.state.candidateLocation}
+          handleChange={this.handleInputChange}
+          label="Your location"
+        />
 
-          <label htmlFor="input-motivation">Why Should You Get This Job?</label>
+        <InputText
+          id="motivation"
+          value={this.state.motivation}
+          handleChange={this.handleInputChange}
+          label="Motivation letter"
+        />
+
+        {/* <label htmlFor="input-motivation">Why Should You Get This Job?</label>
           <input
             id="input-motivation"
             type="text"
@@ -98,34 +99,26 @@ class FormView extends Component {
             placeholder="I have 5y+ of experience working with React, JavaScript and Node.js"
             value={this.state.motivation}
             onChange={this.handleInputChange}
-          />
+          /> */}
 
-          {/* ------------ Resumé upload ------------ */}
-          {/* ------------ Photo upload ------------ */}
+        {/* ------------ Resumé upload ------------ */}
+        {/* ------------ Photo upload ------------ */}
 
-          <label htmlFor="input-linkedinUrl">Your LinkedIn URL</label>
-          <input
-            id="input-linkedinUrl"
-            type="text"
-            name="linkedinUrl"
-            placeholder="https://www.linkedin.com/in/john-doe/"
-            value={this.state.linkedinUrl}
-            onChange={this.handleInputChange}
-          />
+        <InputText
+          id="linkedinUrl"
+          value={this.state.linkedinUrl}
+          handleChange={this.handleInputChange}
+          label="LinkedIn URL"
+        />
+        <InputText
+          id="githubUrl"
+          value={this.state.githubUrl}
+          handleChange={this.handleInputChange}
+          label="GitHub URL"
+        />
 
-          <label htmlFor="input-githubUrl">Your GitHub URL</label>
-          <input
-            id="input-githubUrl"
-            type="text"
-            name="githubUrl"
-            placeholder="https://www.github.com/john-doe"
-            value={this.state.githubUrl}
-            onChange={this.handleInputChange}
-          />
-
-          <button>Submit</button>
-        </form>
-      </div>
+        <Button name="Apply" />
+      </form>
     );
   }
 }
