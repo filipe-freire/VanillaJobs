@@ -7,7 +7,7 @@ const JobPost = require('./../models/job-post');
 
 const authenticationGuard = require('./../middleware/route-authentication-guard');
 
-jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
+jobPostRouter.post('/', (req, res, next) => {
   const { title, location, description, tasks, requirements, seniority, tech, category } = req.body;
 
   JobPost.create({
