@@ -41,6 +41,12 @@ class Creation extends Component {
       });
   }
 
+  handleUserUpdate = user => {
+    this.setState({
+      user
+    });
+  };
+
   handleFormSubmission = e => {
     e.preventDefault();
     const {
