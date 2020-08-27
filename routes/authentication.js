@@ -27,10 +27,11 @@ authenticationRouter.post('/sign-in', async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
+
     if (!user) throw new Error("Either your email or your password don't match");
 
     const comparePassword = await bcrypt.compare(password, user.passwordHashAndSalt);
-
+    console.log(comparePassword);
     if (!comparePassword) throw new Error('There was an error either with your email our password');
     req.session.userId = user._id;
     res.json({

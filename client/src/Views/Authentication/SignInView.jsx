@@ -35,7 +35,10 @@ class SignInView extends Component {
         this.props.onUserUpdate(user);
       })
       .catch(err => {
-        console.log(err);
+        this.setState({
+          error: 'There was an error either with your email our password'
+        });
+        console.dir(err.response);
       });
     //creating service for sign-in form submission
   };
@@ -59,6 +62,15 @@ class SignInView extends Component {
             handleChange={this.handleInputChange}
             label="Password"
           />
+
+          {this.state.error && (
+            <div
+              className="error-block d-flex rounded align-items-center py-2 justify-content-center"
+              style={{ backgroundColor: 'rgba( 244,175,180, .5 )' }}
+            >
+              <p className="m-0">{this.state.error}</p>
+            </div>
+          )}
 
           <Button name="Sign in" />
         </form>
