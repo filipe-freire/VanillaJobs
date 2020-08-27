@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { postJob } from './../../services/jobPosts';
 import InputCheckbox from '../../components/InputCheckbox';
 import InputText from './../../components/InputText';
-import { loadMe } from '../../services/authentication';
 
 import './styles/job-post-text-inputs.scss';
 import './styles/job-post-radio.scss';
@@ -12,7 +11,6 @@ class Creation extends Component {
   constructor() {
     super();
     this.state = {
-      user: null,
       creator: '',
       title: '',
       location: '',
@@ -23,15 +21,6 @@ class Creation extends Component {
       tech: [],
       category: ''
     };
-  }
-
-  componentDidMount() {
-    loadMe().then(data => {
-      const { user } = data;
-      if (user === null) {
-        this.setState({ user: '' });
-      } else this.setState({ user });
-    });
   }
 
   handleFormSubmission = e => {
