@@ -50,10 +50,10 @@ jobApplicationRouter.post('/submitApplication', async (req, res, next) => {
     transport.sendMail({
       from: process.env.NODEMAILER_EMAIL,
       to: candidateEmail,
-      subject: 'Click the link to activate your account!',
+      subject: 'Thank you for using Vanilla Jobs! 😎',
       html: `<html>  
           <head>
-          <title>Welcome to BandTracker</title>  
+          <title>Application Submitted Successfully</title>  
           <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">  
           </head>  
           <style>  

@@ -79,7 +79,7 @@ class ProfileEditView extends Component {
     const user = this.state.user;
     return (
       <div>
-        <h1>Profile Edit View</h1>
+        <h1>Profile Edit</h1>
         {(this.state.loaded && (
           <>
             <form onSubmit={this.handleUserEdit}>
