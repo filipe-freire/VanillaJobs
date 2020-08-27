@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loadAllUsers } from '../../services/company';
-import './style.scss';
+import './styles/listAllCompanies.scss';
 
 class AllCompanies extends Component {
   constructor() {
@@ -25,7 +25,7 @@ class AllCompanies extends Component {
 
   render() {
     return (
-      <div>
+      <div className="list-companies-view">
         <h1>Company Listing</h1>
         {(this.state.allUsers && (
           <ul>
