@@ -71,32 +71,23 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Homepage} exact />
             {/* {what is the difference between line 74 abd 76??} */}
-            <Route
-              path="/public/profile/:id"
-              component={PublicProfile}
-              exact
-            />{' '}
-            {}
+            <Route path="/public/profile/:id" component={PublicProfile} exact /> {}
             <Route path="/profile/:id/edit" component={ProfileEditView} exact />
-            <Route
-              path="/profile/:id"
-              render={props => (
-                <Profile {...props} user={this.state.user} exact />
-              )} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
-            />
+            {this.state.user && (
+              <Route
+                path="/profile/:id"
+                render={props => <Profile {...props} user={this.state.user} exact />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
+              />
+            )}
             <ProtectedRoute
               path="/authentication/sign-up"
-              render={props => (
-                <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignUpView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
             <ProtectedRoute
               path="/authentication/sign-in"
-              render={props => (
-                <SignInView {...props} onUserUpdate={this.handleUserUpdate} />
-              )}
+              render={props => <SignInView {...props} onUserUpdate={this.handleUserUpdate} />}
               authorized={!this.state.user}
               redirect="/" // REDIRECT TO COMPANY PROFILE VIEW
             />
@@ -105,10 +96,7 @@ class App extends Component {
             <Route path="/jobpost/:id" component={SingleView} exact />
             <Route path="/jobpost/:id/application" component={FormView} />
             <Route path="/listCompanies" component={AllCompanies} />
-            <Route
-              path="/jobApplications/:id"
-              component={JobApplicationsList}
-            />
+            <Route path="/jobApplications/:id" component={JobApplicationsList} />
             <Route path="/application/success" component={FormSubmittedView} />
             <Route path="/error" component={ErrorView} />
             <Redirect from="/" to="/error" />
