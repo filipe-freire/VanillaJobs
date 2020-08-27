@@ -91,6 +91,7 @@ class ProfileEditView extends Component {
                 placeholder="Company name"
                 value={user.companyName || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
 
               <label htmlFor="input-email">Email</label>
@@ -101,6 +102,7 @@ class ProfileEditView extends Component {
                 placeholder="company@example.com"
                 value={user.email || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
 
               <label htmlFor="input-logo">Company Logo</label>
@@ -119,6 +121,7 @@ class ProfileEditView extends Component {
                 placeholder="Paris"
                 value={user.location || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
 
               <label htmlFor="input-foundedDate">Founded:</label>
@@ -129,6 +132,7 @@ class ProfileEditView extends Component {
                 placeholder="dd/mm/yyyy"
                 value={user.foundedDate || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
 
               <label htmlFor="input-websiteUrl">Website</label>
@@ -139,6 +143,7 @@ class ProfileEditView extends Component {
                 placeholder="https://www.company.example"
                 value={user.websiteUrl || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
 
               <label htmlFor="input-sizeInEmployees">Size:</label>
@@ -149,6 +154,7 @@ class ProfileEditView extends Component {
                 placeholder="400 employees"
                 value={user.sizeInEmployees || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
 
               <label htmlFor="input-summary">Summary:</label>
@@ -159,6 +165,7 @@ class ProfileEditView extends Component {
                 placeholder="Summary"
                 value={user.summary || ''}
                 onChange={this.handleCompanyInfoChange}
+                required
               />
               <button>Submit</button>
             </form>
