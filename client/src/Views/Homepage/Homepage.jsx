@@ -70,7 +70,7 @@ class Homepage extends Component {
         <div className="Homepage-header pb-3">
           <h1 className="p-0 my-0">Designed to make your job easier</h1>
         </div>
-        <form className="d-flex flex-row overflow-hidden py-2 col-lg-6">
+        <form className="d-flex flex-row overflow-hidden py-2 my-5 col-lg-6">
           <img
             src="https://res.cloudinary.com/dtty9rclm/image/upload/v1598377654/Project%203%20images/procurar_1_aml9yp.png"
             alt="search-img"

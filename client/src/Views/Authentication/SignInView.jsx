@@ -35,7 +35,7 @@ class SignInView extends Component {
         this.props.onUserUpdate(user);
       })
       .catch(err => {
-        console.log(err);
+        console.dir(err.response.data.error);
       });
     //creating service for sign-in form submission
   };
