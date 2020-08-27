@@ -64,7 +64,7 @@ class AuthSignUpView extends Component {
             label="Password"
           />
 
-          <Button name="Sign in" />
+          <Button name="Sign up" />
         </form>
       </div>
     );

@@ -33,11 +33,21 @@ class Homepage extends Component {
         const { jobPosts } = data;
         const filteredArray = jobPosts.filter(
           value =>
-            value.category.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
-            value.title.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
-            value.location.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
-            value.seniority.toLowerCase().includes(this.state.contentSearch.toLowerCase()) ||
-            value.creator.companyName.toLowerCase().includes(this.state.contentSearch.toLowerCase())
+            value.category
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.title
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.location
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.seniority
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase()) ||
+            value.creator.companyName
+              .toLowerCase()
+              .includes(this.state.contentSearch.toLowerCase())
         );
 
         this.setState({
@@ -57,8 +67,8 @@ class Homepage extends Component {
   render() {
     return (
       <div className="Homepage pt-5">
-        <div className="Homepage-header pt-3">
-          <h1 className="pb-3">Designed to make your job easier</h1>
+        <div className="Homepage-header pb-3">
+          <h1 className="p-0 my-0">Designed to make your job easier</h1>
         </div>
         <form className="d-flex flex-row overflow-hidden py-2 col-lg-6">
           <img
