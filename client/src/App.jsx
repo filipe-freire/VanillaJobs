@@ -73,12 +73,11 @@ class App extends Component {
 
             <Route path="/public/profile/:id" component={PublicProfile} exact />
             <Route path="/profile/:id/edit" component={ProfileEditView} exact />
-            {this.state.user && (
-              <Route
-                path="/profile/:id"
-                render={props => <Profile {...props} user={this.state.user} exact />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
-              />
-            )}
+
+            <Route
+              path="/profile/:id"
+              render={props => <Profile {...props} user={this.state.user} exact />} // Anytime we want to pass app.jsx props and more to the component, we use this syntax
+            />
 
             <ProtectedRoute
               path="/authentication/sign-up"
