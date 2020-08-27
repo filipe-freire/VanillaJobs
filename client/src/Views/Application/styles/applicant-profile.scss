@@ -1,0 +1,18 @@
+$prime-color: #5f49e7;
+
+.Applicant-container {
+  width: 85%;
+  h2 {
+    font-size: 3rem;
+    color: $prime-color;
+  }
+  div {
+    p {
+      margin: 1.5rem 0;
+      span {
+        color: $prime-color;
+        font-weight: 500;
+      }
+    }
+  }
+}
