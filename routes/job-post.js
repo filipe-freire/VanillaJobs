@@ -7,40 +7,28 @@ const JobPost = require('./../models/job-post');
 
 const authenticationGuard = require('./../middleware/route-authentication-guard');
 
-jobPostRouter.post(
-  '/',
-  /*authenticationGuard,*/ (req, res, next) => {
-    const {
-      title,
-      location,
-      description,
-      tasks,
-      requirements,
-      seniority,
-      tech,
-      category
-    } = req.body;
+jobPostRouter.post('/', authenticationGuard, (req, res, next) => {
+  const { title, location, description, tasks, requirements, seniority, tech, category } = req.body;
 
-    JobPost.create({
-      creator: req.user._id,
-      title,
-      location,
-      description,
-      tasks,
-      requirements,
-      seniority,
-      tech,
-      category
+  JobPost.create({
+    creator: req.user._id,
+    title,
+    location,
+    description,
+    tasks,
+    requirements,
+    seniority,
+    tech,
+    category
+  })
+    .then(post => {
+      //console.log('this is the job post to be sent in json', post);
+      return res.json({ post });
     })
-      .then(post => {
-        //console.log('this is the job post to be sent in json', post);
-        return res.json({ post });
-      })
-      .catch(err => {
-        next(err);
-      });
-  }
-);
+    .catch(err => {
+      next(err);
+    });
+});
 
 jobPostRouter.get('/all', async (req, res, next) => {
   try {
