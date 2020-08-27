@@ -31,11 +31,28 @@ $danger: #ee4266;
     }
 
     > div {
+      display: flex;
+      flex-direction: column;
       form {
         button {
-          width: 100%;
+          width: 90px;
           color: $danger !important;
           border: 2px $danger solid;
+          background-color: #fff !important;
+        }
+      }
+      .Edit-link {
+        width: 90px;
+        border-radius: 1rem;
+        margin-top: 1rem;
+        button {
+          font-weight: 500;
+          padding: 0.75rem 0;
+          border-radius: 1rem;
+          width: 100%;
+          height: 100%;
+          color: $tech-light !important;
+          border: 2px $tech-light solid;
           background-color: #fff !important;
         }
       }

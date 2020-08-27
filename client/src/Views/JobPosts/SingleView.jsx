@@ -84,9 +84,17 @@ class SingleView extends Component {
               </div>
               <div className="col-5 d-flex justify-content-center align-items-center">
                 {this.state.user._id === this.state.post.creator._id && (
-                  <form onSubmit={this.handlePostDeletion}>
-                    <Button name="Delete" />
-                  </form>
+                  <>
+                    <form onSubmit={this.handlePostDeletion}>
+                      <Button name="Delete" />
+                    </form>
+                    <Link
+                      to={`/jobPost/${post._id}/edit`}
+                      className="Edit-link"
+                    >
+                      <Button name="Edit" />
+                    </Link>
+                  </>
                 )}
                 {!this.state.user && (
                   <Link

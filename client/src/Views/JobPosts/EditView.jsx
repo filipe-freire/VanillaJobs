@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { loadJob, editJob } from './../../services/jobPosts';
 
@@ -58,31 +59,35 @@ class EditView extends Component {
       tech,
       category
     };
-    editJob(id, body).then(data => {
-      const {
-        creator,
-        title,
-        location,
-        description,
-        tasks,
-        requirements,
-        seniority,
-        tech,
-        category
-      } = data.post;
+    editJob(id, body)
+      .then(data => {
+        const {
+          creator,
+          title,
+          location,
+          description,
+          tasks,
+          requirements,
+          seniority,
+          tech,
+          category
+        } = data.post;
 
-      this.setState({
-        creator,
-        title,
-        location,
-        description,
-        tasks,
-        requirements,
-        seniority,
-        tech,
-        category
+        this.setState({
+          creator,
+          title,
+          location,
+          description,
+          tasks,
+          requirements,
+          seniority,
+          tech,
+          category
+        });
+      })
+      .then(() => {
+        this.props.history.push(`/jobPost/${id}`);
       });
-    });
   };
 
   componentDidMount() {
@@ -145,7 +150,7 @@ class EditView extends Component {
   render() {
     const techEls = ['React', 'NodeJS', 'Javascript', 'VueJS'];
     const seniorityLevels = ['Junior', 'Mid', 'Senior'];
-    const categories = ['Front end', 'Back end', 'Fullstack'];
+    const categories = ['Frontend', 'Backend', 'Fullstack'];
     return (
       <form onSubmit={this.handleFormSubmission} className="py-4">
         <InputText
@@ -229,7 +234,8 @@ class EditView extends Component {
             ))}
           </div>
         </div>
-        <button className="btn ">Create</button>
+
+        <button className="btn ">Update</button>
       </form>
     );
   }

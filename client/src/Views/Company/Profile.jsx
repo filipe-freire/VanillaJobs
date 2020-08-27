@@ -67,7 +67,10 @@ class Profile extends Component {
         {(this.state.user && (
           <>
             <div className="company-info">
-              <img src={this.state.user.logo} alt={`${this.state.user.companyName}'s logo`} />{' '}
+              <img
+                src={this.state.user.logo}
+                alt={`${this.state.user.companyName}'s logo`}
+              />{' '}
               <p className="company-name">
                 {this.state.user.companyName}{' '}
                 <Link to={`/profile/${this.props.match.params.id}/edit`}>
@@ -85,12 +88,17 @@ class Profile extends Component {
               </p>
               <p className="company-website">
                 <span>Website:</span>{' '}
-                <a href={`${this.state.user.websiteUrl}`} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={`${this.state.user.websiteUrl}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {this.state.user.websiteUrl}
                 </a>
               </p>
               <p className="company-size">
-                <span>Company Size:</span> {this.state.user.sizeInEmployees} employees
+                <span>Company Size:</span> {this.state.user.sizeInEmployees}{' '}
+                employees
               </p>
             </div>
             <div className="company-summary">
@@ -115,9 +123,14 @@ class Profile extends Component {
                           alt="company logo"
                         />
                         <div className="d-flex flex-column justify-content-between align-items-start ml-4">
-                          <h5 className="m-0">{post.title}</h5>
-                          <p className="m-0"> Seniority: {post.seniority}</p>
-                          <p className="m-0">Location: {post.location}</p>
+                          <h5 className="m-0 text-left">{post.title}</h5>
+                          <p className="m-0 text-left">
+                            {' '}
+                            Seniority: {post.seniority}
+                          </p>
+                          <p className="m-0 text-left">
+                            Location: {post.location}
+                          </p>
                         </div>
                       </Link>
                       {/* <Link to={`/jobpost/${post._id}`}>
