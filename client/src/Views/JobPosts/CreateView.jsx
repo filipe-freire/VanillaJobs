@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { postJob } from './../../services/jobPosts';
+import { loadMe } from './../../services/authentication';
 import InputCheckbox from '../../components/InputCheckbox';
 import InputText from './../../components/InputText';
 
@@ -11,6 +12,7 @@ class Creation extends Component {
   constructor() {
     super();
     this.state = {
+      user: null,
       creator: '',
       title: '',
       location: '',
@@ -21,6 +23,22 @@ class Creation extends Component {
       tech: [],
       category: ''
     };
+  }
+
+  componentDidMount() {
+    loadMe()
+      .then(data => {
+        const user = data.user;
+
+        this.handleUserUpdate(user);
+
+        this.setState({
+          loaded: true
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   handleFormSubmission = e => {
