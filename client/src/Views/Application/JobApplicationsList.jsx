@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { loadNumOfApplicants } from '../../services/application';
+import { Link } from 'react-router-dom';
+import Button from './../../components/Button';
+
+import './styles/applicant-profile.scss';
 
 class JobApplications extends Component {
   constructor() {
@@ -18,57 +22,53 @@ class JobApplications extends Component {
         this.setState({
           applicants
         });
-
-        console.log(this.state);
       })
       .catch(error => console.log(error));
   }
 
   render() {
-    //console.log(this.state.applicants);
     return (
-      <div>
-        <h1 style={{ marginTop: '.5em' }}>Single Job Applications</h1>
-        <ul style={{ padding: '1em', listStyle: 'none' }}>
-          {this.state.applicants &&
-            this.state.applicants.map(candidate => (
-              <li key={candidate._id} style={{ borderTop: '2px solid lightgrey' }}>
-                <p style={{ marginTop: '.5em', fontSize: '1.2em' }}>
-                  <span style={{ fontWeight: '500' }}>Candidate name:</span>{' '}
-                  {candidate.candidateName}
+      <div className="Applicant-container mx-auto mt-5">
+        {this.state.applicants &&
+          this.state.applicants.map(candidate => (
+            <div key={candidate._id}>
+              <h2 className="text-left">{candidate.candidateName}</h2>
+              <div className="mt-5">
+                <p className="text-left">
+                  <span>Email:</span> {candidate.candidateEmail}
                 </p>
-                <p style={{ marginTop: '.5em', fontSize: '1.2em' }}>
-                  <span style={{ fontWeight: '500' }}>Email:</span> {candidate.candidateEmail}
+                <p className="text-left">
+                  <span>Location:</span> {candidate.candidateLocation}
                 </p>
-                <p style={{ marginTop: '.5em', fontSize: '1.2em' }}>
-                  <span style={{ fontWeight: '500' }}>Location:</span> {candidate.candidateLocation}
+                <p className="text-left">
+                  <span>Motivation:</span> {candidate.motivation}
                 </p>
-                <p style={{ marginTop: '.5em', fontSize: '1.2em' }}>
-                  <span style={{ fontWeight: '500' }}>Motivation:</span> {candidate.motivation}
-                </p>
-                <p style={{ marginTop: '.5em', fontSize: '1.2em' }}>
-                  <span style={{ fontWeight: '500' }}>Linkedin page:</span>{' '}
+                <p className="text-left">
+                  <span>Linkedin page: </span>
                   <a
                     href={`https://${candidate.linkedinUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {candidate.linkedinUrl}
-                  </a>{' '}
+                  </a>
                 </p>
-                <p style={{ marginTop: '.5em', fontSize: '1.2em' }}>
-                  <span style={{ fontWeight: '500' }}>Github page:</span>{' '}
+                <p className="text-left">
+                  <span>Github page: </span>
                   <a
                     href={`https://${candidate.githubUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {candidate.githubUrl}
-                  </a>{' '}
+                  </a>
                 </p>
-              </li>
-            ))}
-        </ul>
+              </div>
+            </div>
+          ))}
+        <Link to={`/jobpost/${this.props.match.params.id}`}>
+          <Button name="Back" />
+        </Link>
       </div>
     );
   }

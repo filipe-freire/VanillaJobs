@@ -36,7 +36,7 @@ class SignInView extends Component {
       })
       .catch(err => {
         this.setState({
-          error: 'There was an error either with your email our password'
+          error: 'There was an error either with your email or password'
         });
         console.dir(err.response);
       });
