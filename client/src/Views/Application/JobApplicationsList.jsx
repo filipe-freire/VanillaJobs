@@ -66,7 +66,10 @@ class JobApplications extends Component {
               </div>
             </div>
           ))}
-        <Link to={`/jobpost/${this.props.match.params.id}`}>
+        <Link
+          className="py-2 rounded"
+          to={`/jobpost/${this.props.match.params.id}`}
+        >
           <Button name="Back" />
         </Link>
       </div>

@@ -15,4 +15,21 @@ $prime-color: #5f49e7;
       }
     }
   }
+
+  > a {
+    width: 50%;
+    max-width: 250px;
+    border: none;
+    button {
+      border-radius: inherit;
+      width: inherit;
+      max-width: inherit;
+      padding: inherit;
+      border: 1px solid $prime-color;
+      background-color: $prime-color;
+      font-weight: 600;
+      color: white;
+      margin-top: 2rem;
+    }
+  }
 }
