@@ -8,7 +8,7 @@ class PublicProfile extends Component {
     super();
     this.state = {
       user: null,
-      jobPosts: null
+      jobPosts: []
     };
   }
 
