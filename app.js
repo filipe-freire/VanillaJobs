@@ -1,5 +1,3 @@
-'use strict';
-
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -33,8 +31,8 @@ app.use(logger('dev'));
 
 app.use(
   cors({
-    credentials: true,
-    origin: [process.env.CLIENT_APP_URL]
+    origin: [process.env.CLIENT_APP_URL],
+    credentials: true
   })
 );
 

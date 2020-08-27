@@ -43,7 +43,7 @@ class SingleView extends Component {
     e.preventDefault();
     const id = this.props.match.params.id;
     deleteJob(id).then(() => {
-      this.props.history.push('/');
+      this.props.history.push(`/profile/${this.state.user._id}`);
     });
   };
 
