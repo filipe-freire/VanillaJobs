@@ -41,7 +41,7 @@ class AuthSignUpView extends Component {
   render() {
     return (
       <div className="authentication-container py-5 my-5 d-flex flex-column justify-content-center mx-auto">
-        <h3>Sign-in</h3>
+        <h3>Sign Up</h3>
         <form onSubmit={this.handleFormSubmission} className="mx-auto ">
           <InputText
             id="companyName"
