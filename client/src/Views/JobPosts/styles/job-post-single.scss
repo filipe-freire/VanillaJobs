@@ -85,7 +85,7 @@ $danger: #ee4266;
 
 @media (min-width: $mid) {
   .jobpost-container {
-    background-image: none;
+    background-image: none !important;
     width: 70%;
   }
 }
