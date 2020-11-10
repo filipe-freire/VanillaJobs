@@ -1,0 +1,13 @@
+@import './../../../utilites/styles/master';
+
+@media (min-width: $mid) {
+  form {
+    width: 70%;
+  }
+}
+@media (min-width: $large) {
+  form {
+    width: 60%;
+    max-width: 55rem;
+  }
+}

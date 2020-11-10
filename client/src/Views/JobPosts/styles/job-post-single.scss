@@ -80,3 +80,16 @@ $danger: #ee4266;
     }
   }
 }
+
+@media (min-width: $mid) {
+  .jobpost-container {
+    background-image: none;
+    width: 70%;
+  }
+}
+@media (min-width: $large) {
+  .jobpost-container {
+    width: 60%;
+    max-width: 55rem;
+  }
+}
