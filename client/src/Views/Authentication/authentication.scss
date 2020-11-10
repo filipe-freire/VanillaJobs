@@ -8,5 +8,12 @@ $color-highlighted: #5f49e7;
 
   form {
     width: 90%;
+
+    button:hover {
+      background-color: #fff !important;
+      color: #5f49e7 !important;
+    }
   }
 }
+
+@import './styles/media';

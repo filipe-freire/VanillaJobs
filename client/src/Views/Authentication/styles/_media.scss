@@ -1,0 +1,18 @@
+@import './../../../utilites/styles/master';
+
+@media (min-width: $mid) {
+  .authentication-container {
+    form {
+      width: 70%;
+    }
+  }
+}
+
+@media (min-width: $large) {
+  .authentication-container {
+    form {
+      width: 50%;
+      max-width: 50rem;
+    }
+  }
+}
