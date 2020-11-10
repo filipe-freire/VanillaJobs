@@ -87,13 +87,13 @@ class SingleView extends Component {
                   <>
                     <form onSubmit={this.handlePostDeletion}>
                       <Button name="Delete" />
+                      <Link
+                        to={`/jobPost/${post._id}/edit`}
+                        className="Edit-link"
+                      >
+                        <Button name="Edit" />
+                      </Link>
                     </form>
-                    <Link
-                      to={`/jobPost/${post._id}/edit`}
-                      className="Edit-link"
-                    >
-                      <Button name="Edit" />
-                    </Link>
                   </>
                 )}
                 {!this.state.user && (

@@ -1,0 +1,15 @@
+@media (min-width: 580px) {
+  .navbar-component {
+    .menu {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 914px) {
+  .navbar-component {
+    .menu {
+      width: 35%;
+    }
+  }
+}
