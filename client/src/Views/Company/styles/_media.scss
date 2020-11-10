@@ -1,0 +1,17 @@
+@import './../../../utilites/styles/master';
+
+@media (min-width: $mid) {
+  .profile-view,
+  .profile-view-public {
+    width: 70%;
+    margin: auto;
+  }
+}
+@media (min-width: $large) {
+  .profile-view,
+  .profile-view-public {
+    width: 70%;
+    max-width: 60rem;
+    margin: auto;
+  }
+}

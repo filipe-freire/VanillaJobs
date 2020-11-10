@@ -9,6 +9,7 @@
       display: inline-block;
       max-width: 150px;
       max-height: 150px;
+      border-radius: 0.5rem;
     }
 
     .jobPost-img {
@@ -38,7 +39,7 @@
     .company-name {
       margin-top: 0.75em;
       font-weight: 700;
-      color: rgb(23, 105, 172);
+      color: rgba(95, 73, 231, 1);
       font-size: 2.5em;
 
       a > img {
@@ -98,3 +99,5 @@
     }
   }
 }
+
+@import './media';
