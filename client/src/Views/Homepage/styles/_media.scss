@@ -1,0 +1,33 @@
+@import './../../../utilites/styles/master';
+
+@media (min-width: $mid) {
+  .Homepage {
+    width: $w-mid;
+
+    .Homepage-header {
+      max-width: 30rem;
+      margin: auto;
+    }
+
+    form {
+      max-width: 30rem;
+      margin: auto;
+    }
+  }
+}
+@media (min-width: $large) {
+  .Homepage {
+    width: $w-large;
+    max-width: $mw-large;
+
+    .Homepage-header {
+      // background-image: none;
+      margin-bottom: 2rem;
+
+      h1 {
+        margin-left: 10%;
+        text-align: center;
+      }
+    }
+  }
+}
