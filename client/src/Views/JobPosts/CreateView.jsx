@@ -87,7 +87,6 @@ class Creation extends Component {
   };
 
   render() {
-    console.log(this.state)
 
     //input select types
     const selectType = [
@@ -97,46 +96,34 @@ class Creation extends Component {
     ]
 
     // //input text types
-    // const textLabelsList = [
-    //   "Job Title",
-    //   "Job Location",
-    //   "Job Description",
-    //   "Tasks",
-    //   "Requirements"
-    // ];
+    const textLabelsList = [
+      "Job Title",
+      "Job Location",
+      "Job Description",
+      "Tasks",
+      "Requirements"
+    ];
 
     return (
       <form onSubmit={this.handleFormSubmission} className="py-4">
-        <InputText
-          id="title"
-          value={this.state.title}
-          handleChange={this.handleUserInput}
-          label="Job Title"
-        />
-        <InputText
-          id="location"
-          value={this.state.location}
-          handleChange={this.handleUserInput}
-          label="Job Location"
-        />
-        <InputText
-          id="description"
-          value={this.state.description}
-          handleChange={this.handleUserInput}
-          label="Job Description"
-        />
-        <InputText
-          id="tasks"
-          value={this.state.tasks}
-          handleChange={this.handleUserInput}
-          label="Tasks"
-        />
-        <InputText
-          id="requirements"
-          value={this.state.requirements}
-          handleChange={this.handleUserInput}
-          label="Requirements"
-        />
+        {textLabelsList.map((item, index)=> {
+          let labelName;
+
+          if(!item.includes(' ')) {
+            labelName = item.toLowerCase();
+          } else {
+            labelName = item.split(' ')[1].toLowerCase();
+          }
+
+          return (<InputText
+            id={labelName}
+            value={this.state[labelName]}
+            handleChange={this.handleUserInput}
+            label={item}
+            key={index}
+          />)
+        }
+        )}
 
         {selectType.map((label, index)=> (
           <div key={index} className="select-input">
