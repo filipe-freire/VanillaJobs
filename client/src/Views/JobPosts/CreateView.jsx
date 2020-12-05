@@ -87,92 +87,62 @@ class Creation extends Component {
   };
 
   render() {
-    const techEls = ['React', 'NodeJS', 'Javascript', 'VueJS'];
-    const seniorityLevels = ['Junior', 'Mid', 'Senior'];
-    const categories = ['Frontend', 'Backend', 'Fullstack'];
+
+    //input select types
+    const selectType = [
+      {name: 'category', type: 'radio', items: ['Frontend', 'Backend', 'Fullstack']},
+      {name: 'seniority', type: 'radio', items: ['Junior', 'Mid', 'Senior']},
+      {name: 'tech', type: 'checkbox', items: ['React', 'NodeJS', 'Javascript', 'VueJS']}
+    ]
+
+    // //input text types
+    const textLabelsList = [
+      "Job Title",
+      "Job Location",
+      "Job Description",
+      "Tasks",
+      "Requirements"
+    ];
+
     return (
       <form onSubmit={this.handleFormSubmission} className="py-4">
-        <InputText
-          id="title"
-          value={this.state.title}
-          handleChange={this.handleUserInput}
-          label="Job Title"
-        />
+        {textLabelsList.map((item, index)=> {
+          let labelName;
 
-        <div className="select-input">
-          <p className="text-left">Category</p>
-          <div className="d-flex justify-content-start ">
-            {categories.map(item => (
-              <InputCheckbox
-                type="radio"
-                id={item.toLowerCase()}
-                value={item}
-                name="category"
-                handleChange={this.handleUserSelectInput}
-                color={(this.state.category === item && '#5f49e7') || '#cacaca'}
-                key={item}
-              />
-            ))}
-          </div>
-        </div>
-        <InputText
-          id="location"
-          value={this.state.location}
-          handleChange={this.handleUserInput}
-          label="Job Location"
-        />
-        <InputText
-          id="description"
-          value={this.state.description}
-          handleChange={this.handleUserInput}
-          label="Job Description"
-        />
-        <InputText
-          id="tasks"
-          value={this.state.tasks}
-          handleChange={this.handleUserInput}
-          label="Tasks"
-        />
-        <InputText
-          id="requirements"
-          value={this.state.requirements}
-          handleChange={this.handleUserInput}
-          label="Requirements"
-        />
+          if(!item.includes(' ')) {
+            labelName = item.toLowerCase();
+          } else {
+            labelName = item.split(' ')[1].toLowerCase();
+          }
 
-        <div className="select-input">
-          <p className="text-left">Seniority</p>
-          <div className="d-flex justify-content-start">
-            {seniorityLevels.map(item => (
-              <InputCheckbox
-                type="radio"
-                id={item.toLowerCase()}
-                name="seniority"
-                value={item}
-                handleChange={this.handleUserSelectInput}
-                color={this.state.seniority === item && '#5f49e7'}
-                key={item}
-              />
-            ))}
-          </div>
-        </div>
+          return (<InputText
+            id={labelName}
+            value={this.state[labelName]}
+            handleChange={this.handleUserInput}
+            label={item}
+            key={index}
+          />)
+        }
+        )}
 
-        <div className="select-input">
-          <p className="text-left">Tech</p>
-          <div className="d-flex d-flex justify-content-start flex-wrap">
-            {techEls.map(item => (
-              <InputCheckbox
-                type="checkbox"
-                name="tech"
-                id={item.toLowerCase()}
-                value={item}
-                handleChange={this.handleUserCheckInput}
-                key={item}
-                color={this.state.tech.includes(item) && '#5f49e7'}
-              />
-            ))}
+        {selectType.map((label, index)=> (
+          <div key={index} className="select-input">
+            <p className="text-left">{label.name[0].toUpperCase() + label.name.slice(1)}</p>
+            <div className="d-flex d-flex justify-content-start flex-wrap">
+              {label.items.map((item, index) => (
+                <InputCheckbox
+                  type={label.type}
+                  name={label.name}
+                  id={item.toLowerCase()}
+                  value={item}
+                  handleChange={label.type === 'checkbox' ? this.handleUserCheckInput: this.handleUserSelectInput}
+                  key={index}
+                  color={this.state[label.name].includes(item) && '#5f49e7'}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
         <button className="btn">Create</button>
       </form>
     );

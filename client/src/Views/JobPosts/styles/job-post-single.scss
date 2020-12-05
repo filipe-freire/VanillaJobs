@@ -1,3 +1,5 @@
+@import './../../../utilites/styles/master';
+
 $color-blank: #919191;
 $color-highlighted: #5f49e7;
 $text-color-dark: #686868;
@@ -78,5 +80,18 @@ $danger: #ee4266;
         color: $tech-light;
       }
     }
+  }
+}
+
+@media (min-width: $mid) {
+  .jobpost-container {
+    background-image: none !important;
+    width: 70%;
+  }
+}
+@media (min-width: $large) {
+  .jobpost-container {
+    width: 60%;
+    max-width: 55rem;
   }
 }
